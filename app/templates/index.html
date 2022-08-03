@@ -224,6 +224,7 @@
 {% block script %}
 <!-- 繪圖 -->
 <script type="text/javascript">
+
     var myChart = echarts.init(document.getElementById('K_line'), 'dark');
     // , 'dark' 為暗色版
     var option;
@@ -394,10 +395,16 @@
         return result;
     }
     
-    // 取K_line名稱
+    // 取K_line名稱 判斷是.tw或.two
     function getha(name){
       var ha = document.getElementById('k_line_ha');
-      ha.innerHTML = name + '.tw';
+      console.log(name);
+      
+      if (uplist.includes(name)){
+        ha.innerHTML = name + '.two';
+      }else{
+        ha.innerHTML = name + '.tw';
+      }
     }
 
     // 搜尋時頁面: 將search_from取得的股票號碼連同post請求一起傳到後端，取得資料後進行繪圖

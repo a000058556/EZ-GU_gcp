@@ -1,37 +1,47 @@
-{% extends 'parts/to_name.html' %}
+{% extends 'parts/base.html' %}
 
+{% block content %}
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        <!-- 搜尋欄 -->
+        <form class="ms-4 d-inline-flex" name="search_from"  onsubmit="return check_search_from()">
+              <input class="form-control bg-dark border-0 nav-link"  type="text"  placeholder="EX：2330" name="q" aria-label="Search" >
+            <button class="btn my-2 my-sm-0 btn-light m-2"  type="submit">Search</button>
+        </form>
+        <div class="navbar-nav align-items-center ms-auto">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa fa-bell me-lg-2"></i>
+                    <span class="d-none d-lg-inline-flex">Notificatin</span>
+                </a>
+            </div>
 
-{% block Ranking %}
-<!-- 券商買賣排行 -->
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-12">
-            <div class="bg-secondary rounded p-4" >
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0" id="loding">券商買賣排行</h6>
-                </div>              
-                <div class="alert alert-light mb-4" role="alert">
-                    -券商買賣排行說明。
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-md-8">
+                <div class="bg-secondary rounded p-4" >
+                    <div class="d-flex align-items-center justify-content-between ">
+                        <h3 class="mb-0">{{name}}.tw</h3>
+                    </div>
+                    <div id="K_line" style="width: 100%;height:500px;"></div>
                 </div>
-                <table id="Brokerage_ByS_Ranking" class="table table-bordered border-light mb-0" style="text-align: center; line-height:35px;">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">券商名稱</th>
-                            <th scope="col">買張</th>
-                            <th scope="col">賣張</th>
-                            <th scope="col">賣超</th>
-                            <th scope="col">均價</th>
-                            <th scope="col">券商名稱</th>
-                            <th scope="col">買張</th>
-                            <th scope="col">賣張</th>
-                            <th scope="col">買超</th>
-                            <th scope="col">均價</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tb">
-
-                    </tbody>
-                </table>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="bg-secondary rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">預測</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div id="up_down" style="width: 100%;height:500px;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +51,8 @@
 
 {% block script %}
 <script  type="text/javascript">
- 
+
+    
     //取得網址字串
     var url = location.href;
     //分割字串把分割後的字串放進陣列中
@@ -49,6 +60,7 @@
     //取得name值
     var url_name = ary1[ary1.length-1]
     
+
     var myChart = echarts.init(document.getElementById('K_line'), 'dark');
     // , 'dark' 為暗色版
     var option;
@@ -93,10 +105,12 @@
     return result;
     }
     
+
     // 預設頁面: 發送ajax請求，從後台獲取json數據
     $(document).ready(function () {  
+        console.log(url_name);
         getData_Kline();
-        ByS_Ranking();
+        console.log(url_name);
     });
     
     // 以下為K_line
@@ -346,87 +360,9 @@
         myChart.resize();
         });
 
-    // 券商買賣排行
 
 
 
 
-</script>
-<!-- 投信購買標的 -->
-<script>
-  // 設定計數器cont 讓它不要重複執行抓取表格
-  let cont = 0;
-  function ByS_Ranking(){
-      console.log(cont);
-      // $("#tb").html("");
-    
-    if(cont == 0){
-      cont ++;
-      
-      $.ajax({
-        url:'/ByS_Ranking',
-        data:{name:url_name},
-        type:'POST',
-        async:false,
-        dataType:'json',
-          success(data){                          
-              document.querySelector("#loding").textContent = '讀取中請稍後';
-              var data = eval(data);
-              // 抓取要寫入的格
-              var ByS = document.getElementById('Brokerage_ByS_Ranking'); 
-              // 呼叫建立資料方法 
-              getDataRow(data);        
-
-              function getDataRow(data){ 
-                  // console.log(data);
-                  for(var i = 0; i < 21; i++){
-                      var row = document.createElement('tr'); //建立row 
-
-                      var ACell = document.createElement('td'); //建立第一列
-                      ACell.innerText = data[i]['券商名稱']; //設定資料
-                      ACell.setAttribute('class','alert-light'); //加入class
-                      row.appendChild(ACell);//加入資料
-
-                      var BCell = document.createElement('td'); //建立第2列 
-                      BCell.innerText = data[i]['買張']; //設定資料
-                      row.appendChild(BCell); //將td append到 tr
-
-                      var CCell = document.createElement('td');//建立第3  
-                      CCell.innerHTML = data[i]['賣張'];
-                      row.appendChild(CCell); 
-
-                      var DCell = document.createElement('td');//建立第4 
-                      DCell.innerHTML = data[i]['賣超'];
-                      row.appendChild(DCell); 
-                      var ECell = document.createElement('td');//建立第5
-                      ECell.innerHTML = data[i]['均價']; 
-                      row.appendChild(ECell); 
-                      var FCell = document.createElement('td');//建立第6
-                      FCell.innerHTML = data[i]['券商名稱.1'];
-                      FCell.setAttribute('class','alert-light');
-                      row.appendChild(FCell); 
-                      var GCell = document.createElement('td');//建立第7
-                      GCell.innerHTML = data[i]['買張.1'];
-                      row.appendChild(GCell); 
-                      var HCell = document.createElement('td');//建立第8
-                      HCell.innerHTML = data[i]['賣張.1'];
-                      row.appendChild(HCell); 
-                      var ICell = document.createElement('td');//建立第9
-                      ICell.innerHTML = data[i]['買超'];
-                      row.appendChild(ICell); 
-                      var JCell = document.createElement('td');//建立第10
-                      JCell.innerHTML = data[i]['均價'];
-                      row.appendChild(JCell); 
-                      console.log(row);
-                  ByS.appendChild(row); 
-                  document.querySelector("#loding").textContent = '券商買賣排行';
-                  }
-              }}
-          })
-      }else{
-          document.querySelector("#loding").textContent = '券商買賣排行-讀取失敗';
-      }
-    return false;
-  }
 </script>
 {% endblock %}

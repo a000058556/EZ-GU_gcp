@@ -19,6 +19,18 @@ import bs4
 
 # ======================================================================
 
+# 上櫃清單&辨識函式(輸出為: 編號+.tw或.two)
+uplist = ['1240', '1258', '1259', '1264', '1268', '1336', '1565', '1569', '1570', '1580', '1584', '1586', '1591', '1593', '1595', '1599', '1742', '1777', '1781', '1784', '1785', '1788', '1796', '1799', '1813', '1815', '2035', '2061', '2063', '2064', '2065', '2066', '2067', '2070', '2221', '2230', '2235', '2596', '2640', '2641', '2643', '2718', '2719', '2724', '2726', '2729', '2732', '2734', '2736', '2740', '2743', '2745', '2752', '2754', '2755', '2756', '2916', '2924', '2926', '2937', '2947', '3064', '3066', '3067', '3071', '3073', '3078', '3081', '3083', '3085', '3086', '3088', '3089', '3093', '3095', '3105', '3114', '3115', '3118', '3122', '3128', '3131', '3141', '3147', '3152', '3162', '3163', '3169', '3171', '3176', '3178', '3188', '3191', '3202', '3205', '3206', '3207', '3211', '3213', '3217', '3218', '3219', '3221', '3224', '3226', '3227', '3228', '3230', '3232', '3234', '3236', '3252', '3259', '3260', '3264', '3265', '3268', '3272', '3276', '3284', '3285', '3287', '3288', '3289', '3290', '3293', '3294', '3297', '3303', '3306', '3310', '3313', '3317', '3322', '3323', '3324', '3325', '3332', '3339', '3349', '3354', '3357', '3360', '3362', '3363', '3372', '3373', '3374', '3379', '3388', '3390', '3402', '3426', '3434', '3438', '3441', '3444', '3455', '3465', '3466', '3479', '3483', '3484', '3489', '3490', '3491', '3492', '3498', '3499', '3508', '3511', '3512', '3516', '3520', '3521', '3522', '3523', '3526', '3527', '3529', '3531', '3537', '3540', '3541', '3546', '3548', '3551', '3552', '3555', '3556', '3558', '3564', '3567', '3570', '3577', '3580', '3581', '3587', '3594', '3597', '3609', '3611', '3615', '3623', '3624', '3625', '3628', '3629', '3630', '3631', '3632', '3642', '3646', '3652', '3663', '3664', '3666', '3672', '3675', '3680', '3684', '3685', '3687', '3689', '3691', '3693', '3707', '3709', '3710', '3713', '4102', '4105', '4107', '4109', '4111', '4113', '4114', '4116', '4120', '4121', '4123', '4126', '4127', '4128', '4129', '4130', '4131', '4138', '4139', '4147', '4153', '4154', '4157', '4160', '4161', '4162', '4163', '4167', '4168', '4171', '4173', '4174', '4175', '4183', '4188', '4192', '4198', '4205', '4207', '4303', '4304', '4305', '4401', '4402', '4406', '4413', '4416', '4417', '4419', '4420', '4430', '4432', '4433', '4502', '4503', '4506', '4510', '4513', '4523', '4527', '4528', '4529', '4530', '4533', '4534', '4535', '4538', '4541', '4542', '4543', '4549', '4550', '4554', '4556', '4558', '4561', '4563', '4568', '4577', '4580', '4609', '4702', '4706', '4707', '4711', '4712', '4714', '4716', '4721', '4726', '4728', '4729', '4735', '4736', '4741', '4743', '4744', '4745', '4747', '4754', '4760', '4767', '4768', '4804', '4806', '4903', '4905', '4907', '4908', '4909', '4911', '4923', '4924', '4931', '4933', '4939', '4944', '4945', '4946', '4950', '4953', '4966', '4971', '4972', '4973', '4974', '4979', '4987', '4991', '4995', '5009', '5011', '5013', '5014', '5015', '5016', '5201', '5202', '5205', '5206', '5209', '5210', '5211', '5212', '5213', '5220', '5223', '5227', '5228', '5230', '5236', '5245', '5251', '5263', '5272', '5274', '5276', '5278', '5281', '5287', '5289', '5291', '5299', '5301', '5302', '5309', '5310', '5312', '5314', '5315', '5321', '5324', '5328', '5340', '5344', '5345', '5347', '5348', '5351', '5353', '5355', '5356', '5364', '5371', '5381', '5383', '5386', '5392', '5398', '5403', '5410', '5425', '5426', '5432', '5438', '5439', '5443', '5450', '5452', '5455', '5457', '5460', '5464', '5465', '5468', '5474', '5475', '5478', '5481', '5483', '5487', '5488', '5489', '5490', '5493', '5498', '5508', '5511', '5512', '5514', '5516', '5520', '5523', '5529', '5530', '5536', '5543', '5601', '5603', '5604', '5609', '5701', '5703', '5704', '5820', '5864', '5878', '5902', '5903', '5904', '5905', '6015', '6016', '6020', '6021', '6023', '6026', '6101', '6103', '6104', '6111', '6113', '6114', '6118', '6121', '6122', '6123', '6124', '6125', '6126', '6127', '6129', '6130', '6134', '6138', '6140', '6143', '6144', '6146', '6147', '6148', '6150', '6151', '6154', '6156', '6158', '6160', '6161', '6163', '6167', '6169', '6170', '6171', '6173', '6174', '6175', '6179', '6180', '6182', '6185', '6186', '6187', '6188', '6190', '6194', '6195', '6198', '6199', '6203', '6204', '6207', '6208', '6210', '6212', '6217', '6218', '6219', '6220', '6221', '6222', '6223', '6227', '6228', '6229', '6231', '6233', '6234', '6236', '6237', '6240', '6241', '6242', '6244', '6245', '6246', '6247', '6248', '6259', '6261', '6263', '6264', '6265', '6266', '6270', '6274', '6275', '6276', '6279', '6284', '6287', '6290', '6291', '6292', '6294', '6404', '6411', '6417', '6418', '6419', '6425', '6432', '6435', '6441', '6446', '6457', '6461', '6462', '6465', '6469', '6470', '6472', '6482', '6485', '6486', '6488', '6492', '6494', '6496', '6499', '6506', '6508', '6509', '6510', '6512', '6514', '6516', '6523', '6527', '6530', '6532', '6535', '6538', '6542', '6546', '6547', '6548', '6556', '6560', '6561', '6568', '6569', '6570', '6574', '6576', '6577', '6578', '6588', '6589', '6590', '6593', '6594', '6596', '6603', '6609', '6612', '6613', '6615', '6616', '6624', '6629', '6640', '6642', '6643', '6649', '6651', '6654', '6661', '6662', '6664', '6667', '6679', '6680', '6683', '6684', '6690', '6693', '6697', '6703', '6712', '6716', '6721', '6727', '6728', '6732', '6733', '6735', '6741', '6747', '6751', '6752', '6761', '6762', '6763', '6767', '6788', '6803', '6804', '6823', '6829', '7402', '7556', '8024', '8027', '8032', '8034', '8038', '8040', '8042', '8043', '8044', '8047', '8048', '8049', '8050', '8054', '8059', '8064', '8066', '8067', '8068', '8069', '8071', '8074', '8076', '8077', '8080', '8083', '8084', '8085', '8086', '8087', '8088', '8089', '8091', '8092', '8093', '8096', '8097', '8099', '8107', '8109', '8111', '8121', '8147', '8155', '8171', '8176', '8182', '8183', '8234', '8240', '8255', '8277', '8279', '8284', '8289', '8291', '8299', '8342', '8349', '8354', '8358', '8383', '8390', '8401', '8403', '8409', '8410', '8415', '8416', '8418', '8420', '8421', '8423', '8424', '8426', '8431', '8432', '8433', '8435', '8436', '8437', '8440', '8444', '8446', '8450', '8455', '8472', '8476', '8477', '8489', '8905', '8906', '8908', '8916', '8917', '8921', '8923', '8924', '8927', '8928', '8929', '8930', '8931', '8932', '8933', '8935', '8936', '8937', '8938', '8941', '8942', '9949', '9950', '9951', '9960', '9962']
+uplist = set(uplist)
+def upname(data):
+    if str(data) in uplist:
+        data = data+'.two'
+        print(data)
+    else:
+        data = data+'.tw'
+    return data
+
+
 app = Flask(__name__)
 CORS(app) # 處理跨域同源政策問題
 # 首頁
@@ -28,21 +40,6 @@ def index():
     tiele = 'EZ-GU'
     name_ha = '2330.tw'
     return render_template('index.html', active01 = active, tiele = tiele, name_ha = name_ha)
-
-
-# /Elements
-@app.route('/element',methods=['GET'])
-def elements():
-    return render_template('element.html')
-
-@app.route('/button',methods=['GET'])
-def button():
-    return render_template('button.html')
-
-@app.route('/typography',methods=['GET'])
-def typography():
-    return render_template('typography.html')
-
 
 # /選股
 @app.route('/widget',methods=['GET','POST'])
@@ -71,20 +68,30 @@ def chart():
 # /SP_01/to_name
 @app.route('/SP_01/<name>',methods=['GET','POST'])
 def to_name_01(name):
-    tiele = name + '.tw 券商買賣排行'
-    return render_template('ByS_Ranking.html',name = name ,tiele = tiele)
+    name_org = upname(name)
+    tiele = upname(name) + ' 券商買賣排行'
+    return render_template('ByS_Ranking.html',name = name_org ,tiele = tiele)
 
 # /SP_02/to_name
 @app.route('/SP_02/<name>',methods=['GET','POST'])
 def to_name_02(name):
-    tiele = name + '.tw 融資融券資訊'
-    return render_template('Margin_Trading_and_Short_Selling.html',name = name ,tiele = tiele)
+    name_org = upname(name)
+    tiele = upname(name) + ' 融資融券資訊'
+    return render_template('Margin_Trading_and_Short_Selling.html',name = name_org ,tiele = tiele)
+
+# /SP_03/to_name
+@app.route('/SP_03/<name>',methods=['GET','POST'])
+def to_name_03(name):
+    name_org = upname(name)
+    tiele = upname(name) + ' EPS'
+    return render_template('EPS.html',name = name_org ,tiele = tiele)
 
 
 
 # /404
 @app.errorhandler(404)
 def page_not_found(e):
+    tiele = '404'
     return render_template('parts/404.html' ,tiele = tiele), 404
 
 # ===================================================(以下為路由)
@@ -97,14 +104,13 @@ def my_echart():
     # 接收前端的傳值
     q = request.values.get('q')
     url_name = request.form.get('name')
-    # print(url_name)
-
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2022-04-29" AND "2022-07-13"'
+        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="' +q+ '" AND Date BETWEEN "2022-04-29" AND "2022-07-13"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -133,9 +139,10 @@ def my_echart():
             cur.close()
     # 用在選推薦分頁
     elif url_name :
+        url_name = upname(url_name)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="'+url_name+'.tw" '
+        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="'+url_name+'"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -206,9 +213,10 @@ def my_MACD():
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
+        sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -272,9 +280,10 @@ def my_Change_MK():
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, Change_MK FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
+        sql = 'SELECT Symbol, Date, Change_MK FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -333,9 +342,10 @@ def my_BBAND():
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume, upper, middle, lower FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
+        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume, upper, middle, lower FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -408,9 +418,10 @@ def my_KDJ():
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, SLOWK, SLOWD, SLOWJ FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
+        sql = 'SELECT Symbol, Date, SLOWK, SLOWD, SLOWJ FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -474,9 +485,10 @@ def my_OBV():
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, OBV FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
+        sql = 'SELECT Symbol, Date, OBV FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -535,9 +547,10 @@ def my_RSI():
 
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
+        q = upname(q)
         conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, RSI9, RSI14, RSI25 FROM stock_info where Symbol="'+q+'.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
+        sql = 'SELECT Symbol, Date, RSI9, RSI14, RSI25 FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         # print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -592,7 +605,7 @@ def my_RSI():
     return(j) 
 
 # /from_in路由
-# /投資組合
+# /投資組合(.two修改未完成)
 @app.route('/form_in',methods=['GET','POST'])
 def form_in():
     start_yt = '2002/01/01'
@@ -748,13 +761,14 @@ def form_in():
             
 
         # 18-21年指定個股平均報酬率
-        name_rr = str('{}.tw'.format(name_st))
+        name_rr = str(upname(name_st))
         df_rr = data.DataReader(name_rr, 'yahoo', start_yt, end_yt)
         df_rr['Change%RR'] = (df_rr['Close'] / df_rr['Close'].shift(1)-1)*100
         change_rr_avg = df_rr['Change%RR'].mean() * 100
 
         # 篩選資料並加入新DataFrame
-        stock_NB_buy = pd.concat([stock_NB_buy, df.loc[df['證券代號'] == name_st]], axis = 0)
+        print(df['證券代號'])
+        stock_NB_buy = pd.concat([stock_NB_buy, df.loc[upname(df['證券代號']) == upname(name_st)]], axis = 0)
 
         # 篩出指定欄位
         stock_LS_buy = stock_NB_buy[['證券代號','證券名稱','開盤價','最高價','最低價','收盤價','漲跌(+/-)','漲跌價差','本益比']]
@@ -767,9 +781,9 @@ def form_in():
         end = check_weekend(today)
         # start = "2022-07-24"
         # end = "2022-07-24"
-        name = str('{}.tw'.format(name_st))
+        name = upname(name_st)
         df_st_buy = data.DataReader(name, 'yahoo', start, end)
-        # print(df_st_buy)
+        print(df_st_buy)
         
         # 將證交所、Yahoo Finance資料合併
         stock_YAHOO_ORDER_buy = pd.concat([stock_YAHOO_ORDER_buy, df_st_buy],axis = 0,ignore_index = True)
@@ -777,9 +791,11 @@ def form_in():
         # 彙整所有DataFrame
         stock_ALL_INFO_buy = pd.concat([stock_LS_buy, stock_YAHOO_ORDER_buy], axis = 1)
         stock_ALL_INFO_buy['收盤價'] = stock_ALL_INFO_buy['收盤價'].astype(float, errors = 'raise')
+        # print(stock_ALL_INFO_buy)
 
         # 18-21年個股曝險程度及報酬率
-        name = str('{}.tw'.format(name_st))
+        # name = str('{}.tw'.format(name_st))
+        name = str(upname(name_st))
         df_days_st = data.DataReader(name, 'yahoo', start_yt, end_yt)
 
         # 個股標準差(standard_deviation)
@@ -834,6 +850,7 @@ def form_in():
         # 建立投資組合表格
         IP_buy = pd.DataFrame(columns=['id','id_name','YEAR','SP','BT','現價','成本基準','買入股數','買進手續費','買價','現值','持股漲跌幅'],index = SD_buy)
         if len(stock_ALL_INFO_buy) > 0:
+            print(stock_ALL_INFO_buy)
             for NM in range(len(stock_ALL_INFO_buy)):
                 IP_buy.at[IP_buy.index[NM], 'id'] = stock_ALL_INFO_buy.at[stock_ALL_INFO_buy.index[NM], '證券代號']
                 IP_buy.at[IP_buy.index[NM], 'id_name'] = stock_ALL_INFO_buy.at[stock_ALL_INFO_buy.index[NM], '證券名稱']
@@ -899,7 +916,7 @@ def SPK_1():
     # ascii：預設值True，如果資料中含有非ASCII的字元，則會類似\uXXXX的顯示資料，設定成False後，就能正常顯示
     # records為切割DataFrame資料方法之一(allowed values are: {‘split’, ‘records’, ‘index’, ‘columns’, ‘values’, ‘table’}.)。
     stock20_in = stock20.to_json(orient = 'records',force_ascii=False)
-    print(stock20_in)
+    # print(stock20_in)
 
     return(stock20_in)
 
@@ -929,7 +946,7 @@ def ByS_Ranking():
     # ascii：預設值True，如果資料中含有非ASCII的字元，則會類似\uXXXX的顯示資料，設定成False後，就能正常顯示
     # records為切割DataFrame資料方法之一(allowed values are: {‘split’, ‘records’, ‘index’, ‘columns’, ‘values’, ‘table’}.)。
     ByS_Ranking = df1.to_json(orient = 'records',force_ascii=False)
-    print(ByS_Ranking)
+    # print(ByS_Ranking)
 
     return(ByS_Ranking)
 
@@ -959,7 +976,7 @@ def SPK_2():
     # ascii：預設值True，如果資料中含有非ASCII的字元，則會類似\uXXXX的顯示資料，設定成False後，就能正常顯示
     # records為切割DataFrame資料方法之一(allowed values are: {‘split’, ‘records’, ‘index’, ‘columns’, ‘values’, ‘table’}.)。
     Turnover20_in = Turnover20.to_json(orient = 'records',force_ascii=False)
-    print(Turnover20_in)
+    # print(Turnover20_in)
 
     return(Turnover20_in)
 
@@ -968,7 +985,7 @@ def SPK_2():
 def MTaSS():
 
     url_name = request.form.get('name')
-    print(url_name)
+    # print(url_name)
 
     lst = {url_name}
     url_test = 'https://histock.tw/stock/chips.aspx?no=%s&m=mg'
@@ -987,9 +1004,68 @@ def MTaSS():
     # ascii：預設值True，如果資料中含有非ASCII的字元，則會類似\uXXXX的顯示資料，設定成False後，就能正常顯示
     # records為切割DataFrame資料方法之一(allowed values are: {‘split’, ‘records’, ‘index’, ‘columns’, ‘values’, ‘table’}.)。
     MTaSS = df1.to_json(orient = 'records',force_ascii=False)
-    print(MTaSS)
+    # print(MTaSS)
     return(MTaSS)
 
 
 
+# /SPK_3路由
+# /選股-波動收縮規律close > upper(強力買入)
+@app.route('/SPK_3',methods=['GET','POST'])
+def SPK_3():
 
+    conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close > upper'
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+
+    # 轉換成JSON數據格式
+    jsonData = []
+
+    for data in u:
+        result = []
+        result.append(str(data[0]))
+        result.append(str(data[1]))
+        result.append(round((data[2]),2))
+        result.append(round((data[3]),2))
+        result.append(round((data[4]),2))
+        result.append(round((data[5]),2))
+        result.append(round((data[6]),2))
+
+        jsonData.append(result)
+
+        # json.dumps()用於將dict類型的數據轉成str，因為如果直接將dict類型的數據寫入json會發生報錯，因此將數據寫入時需要用到該函數。
+        # print(jsonData)
+        j = json.dumps(jsonData)
+        print(j)
+
+    return(j)
+
+# /選股-波動收縮規律-EPS
+@app.route('/EPS',methods=['GET','POST'])
+def EPS():
+
+    url_name = request.form.get('name')
+    # print(url_name)
+
+    lst = {url_name}
+    url_test = 'https://histock.tw/stock/chips.aspx?no=%s&m=mg'
+    for i in lst:
+        url = url_test %i
+    tables = pd.read_html(url)    
+
+    df1 = tables[0]
+    df1.columns = df1.columns.to_flat_index()
+    df1 = df1.rename(columns={(     '日期',     '日期'):     '日期',('資券互抵(張)','資券互抵(張)'):'資券互抵(張)',('資券當沖(%)','資券當沖(%)'):'資券當沖(%)',('券資比(%)','券資比(%)'):'券資比(%)'\
+                            ,(     '價格',     '價格'):     '價格',(     '比例',     '比例'):     '比例',(    '成交量',    '成交量'):    '成交量'},errors='raise')
+    df1.rename(columns ={   ('融資', '增加'): '融資增加',   ('融資', '餘額'):'融資餘額', ('融資', '使用率％'):'融資使用率%',('融券', '增加'):'融券增加',   ('融券', '餘額'): '融券餘額',(     '融券',    '使用率％'): '融券使用率%'},inplace = True)
+    blankIndex=[''] * len(df1)
+    df1.index=blankIndex
+
+    # ascii：預設值True，如果資料中含有非ASCII的字元，則會類似\uXXXX的顯示資料，設定成False後，就能正常顯示
+    # records為切割DataFrame資料方法之一(allowed values are: {‘split’, ‘records’, ‘index’, ‘columns’, ‘values’, ‘table’}.)。
+    MTaSS = df1.to_json(orient = 'records',force_ascii=False)
+    # print(MTaSS)
+    return(MTaSS)
