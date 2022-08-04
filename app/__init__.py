@@ -14,9 +14,9 @@ from datetime import datetime
 # from datetime import date
 import datetime  as dt
 # ======================================================================
-# 以下為選股組合
+# 以下為選股
 import bs4
-
+from bs4 import BeautifulSoup
 # ======================================================================
 
 # 上櫃清單&辨識函式(輸出為: 編號+.tw或.two)
@@ -108,7 +108,7 @@ def my_echart():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="' +q+ '" AND Date BETWEEN "2022-04-29" AND "2022-07-13"'
         print(sql)
@@ -140,7 +140,7 @@ def my_echart():
     # 用在選推薦分頁
     elif url_name :
         url_name = upname(url_name)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="'+url_name+'"'
         print(sql)
@@ -173,7 +173,7 @@ def my_echart():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"' 
         cur.execute(sql)
@@ -214,7 +214,7 @@ def my_MACD():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         print(sql)
@@ -243,7 +243,7 @@ def my_MACD():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"' 
         cur.execute(sql)
@@ -281,7 +281,7 @@ def my_Change_MK():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, Change_MK FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
         print(sql)
@@ -308,7 +308,7 @@ def my_Change_MK():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, Change_MK FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2020-05-13" AND "2022-07-12"' 
         cur.execute(sql)
@@ -343,7 +343,7 @@ def my_BBAND():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume, upper, middle, lower FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
@@ -377,7 +377,7 @@ def my_BBAND():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume, upper, middle, lower FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"' 
         cur.execute(sql)
@@ -419,7 +419,7 @@ def my_KDJ():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, SLOWK, SLOWD, SLOWJ FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         print(sql)
@@ -448,7 +448,7 @@ def my_KDJ():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, SLOWK, SLOWD, SLOWJ FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"' 
         cur.execute(sql)
@@ -486,7 +486,7 @@ def my_OBV():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, OBV FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
         print(sql)
@@ -513,7 +513,7 @@ def my_OBV():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, OBV FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2020-05-13" AND "2022-07-12"' 
         cur.execute(sql)
@@ -548,7 +548,7 @@ def my_RSI():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, RSI9, RSI14, RSI25 FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         # print(sql)
@@ -577,7 +577,7 @@ def my_RSI():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, RSI9, RSI14, RSI25 FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"' 
         cur.execute(sql)
@@ -719,17 +719,21 @@ def form_in():
 
         for d in date_range:
             url = 'https://www.twse.com.tw/exchangeReport/MI_INDEX'
+            url_up = 'https://www.twse.com.tw/exchangeReport/MI_INDEX'
             formdata = {
                 'response': 'csv',
                 'date': d, 
                 'type': 'ALLBUT0999',
             }
-            # 取得資料並且解析
-            r = requests.get(url, params=formdata)
+            # 取得資料並且解析(判斷是上櫃還是上市)
+            if str(name_st) in uplist:
+                r = requests.get(url_up, params=formdata)
+            else:
+                r = requests.get(url, params=formdata)
+
             r.text.encode('utf8')
             cr = csv.reader(r.text.splitlines(), delimiter=',')
             my_list = list(cr)
-
             # print(my_list)
 
             # 資料整理
@@ -739,12 +743,14 @@ def form_in():
                         if my_list[i][0] == '證券代號':
                             new_list = my_list[i:]
                             break
+                # print(new_list)
                 for j in range(len(new_list)):
                     if j != 0:
                         try:
                             new_list[j][0] = new_list[j][0].split('"')[1]
                         except:
                             break
+                # print(new_list)
                 df = pd.DataFrame(new_list[1:], columns=new_list[0])
 
                 print('已篩選出 {} 全上市股票行情資料'.format(date_range))
@@ -767,8 +773,9 @@ def form_in():
         change_rr_avg = df_rr['Change%RR'].mean() * 100
 
         # 篩選資料並加入新DataFrame
-        print(df['證券代號'])
+        # print(df['證券代號'])
         stock_NB_buy = pd.concat([stock_NB_buy, df.loc[upname(df['證券代號']) == upname(name_st)]], axis = 0)
+        # print(stock_NB_buy)
 
         # 篩出指定欄位
         stock_LS_buy = stock_NB_buy[['證券代號','證券名稱','開盤價','最高價','最低價','收盤價','漲跌(+/-)','漲跌價差','本益比']]
@@ -783,7 +790,7 @@ def form_in():
         # end = "2022-07-24"
         name = upname(name_st)
         df_st_buy = data.DataReader(name, 'yahoo', start, end)
-        print(df_st_buy)
+        # print(df_st_buy)
         
         # 將證交所、Yahoo Finance資料合併
         stock_YAHOO_ORDER_buy = pd.concat([stock_YAHOO_ORDER_buy, df_st_buy],axis = 0,ignore_index = True)
@@ -850,7 +857,7 @@ def form_in():
         # 建立投資組合表格
         IP_buy = pd.DataFrame(columns=['id','id_name','YEAR','SP','BT','現價','成本基準','買入股數','買進手續費','買價','現值','持股漲跌幅'],index = SD_buy)
         if len(stock_ALL_INFO_buy) > 0:
-            print(stock_ALL_INFO_buy)
+            # print(stock_ALL_INFO_buy)
             for NM in range(len(stock_ALL_INFO_buy)):
                 IP_buy.at[IP_buy.index[NM], 'id'] = stock_ALL_INFO_buy.at[stock_ALL_INFO_buy.index[NM], '證券代號']
                 IP_buy.at[IP_buy.index[NM], 'id_name'] = stock_ALL_INFO_buy.at[stock_ALL_INFO_buy.index[NM], '證券名稱']
@@ -885,7 +892,7 @@ def form_in():
     # IP_buy = IP_buy.reset_index(inplace=True)
 
     data_in = IP_buy.to_json(orient = 'records',force_ascii=False)
-    print(data_in)
+    # print(data_in)
 
     return(data_in)
 
@@ -1014,7 +1021,7 @@ def MTaSS():
 @app.route('/SPK_3',methods=['GET','POST'])
 def SPK_3():
 
-    conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close > upper'
     print(sql)
@@ -1043,29 +1050,151 @@ def SPK_3():
 
     return(j)
 
+# /SPK_4路由
+# /選股-波動收縮規律close > upper(買入)
+@app.route('/SPK_4',methods=['GET','POST'])
+def SPK_4():
+
+    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close > middle AND Close < upper'
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+
+    # 轉換成JSON數據格式
+    jsonData = []
+
+    for data in u:
+        result = []
+        result.append(str(data[0]))
+        result.append(str(data[1]))
+        result.append(round((data[2]),2))
+        result.append(round((data[3]),2))
+        result.append(round((data[4]),2))
+        result.append(round((data[5]),2))
+        result.append(round((data[6]),2))
+
+        jsonData.append(result)
+
+        # json.dumps()用於將dict類型的數據轉成str，因為如果直接將dict類型的數據寫入json會發生報錯，因此將數據寫入時需要用到該函數。
+        # print(jsonData)
+        j = json.dumps(jsonData)
+        print(j)
+
+    return(j)
+
+# /SPK_5路由
+# /選股-波動收縮規律close > upper(中立&賣出)
+@app.route('/SPK_5',methods=['GET','POST'])
+def SPK_5():
+
+    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close >= lower AND Close < middle'
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+
+    # 轉換成JSON數據格式
+    jsonData = []
+
+    for data in u:
+        result = []
+        result.append(str(data[0]))
+        result.append(str(data[1]))
+        result.append(round((data[2]),2))
+        result.append(round((data[3]),2))
+        result.append(round((data[4]),2))
+        result.append(round((data[5]),2))
+        result.append(round((data[6]),2))
+
+        jsonData.append(result)
+
+        # json.dumps()用於將dict類型的數據轉成str，因為如果直接將dict類型的數據寫入json會發生報錯，因此將數據寫入時需要用到該函數。
+        # print(jsonData)
+        j = json.dumps(jsonData)
+        print(j)
+
+    return(j)
+
+# /SPK_6路由
+# /選股-波動收縮規律close > upper(強力賣出)
+@app.route('/SPK_6',methods=['GET','POST'])
+def SPK_6():
+
+    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close <= lower'
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+
+    # 轉換成JSON數據格式
+    jsonData = []
+
+    for data in u:
+        result = []
+        result.append(str(data[0]))
+        result.append(str(data[1]))
+        result.append(round((data[2]),2))
+        result.append(round((data[3]),2))
+        result.append(round((data[4]),2))
+        result.append(round((data[5]),2))
+        result.append(round((data[6]),2))
+
+        jsonData.append(result)
+
+        # json.dumps()用於將dict類型的數據轉成str，因為如果直接將dict類型的數據寫入json會發生報錯，因此將數據寫入時需要用到該函數。
+        # print(jsonData)
+        j = json.dumps(jsonData)
+        print(j)
+
+    return(j)
+
+
+
+
+
+
+
+
 # /選股-波動收縮規律-EPS
 @app.route('/EPS',methods=['GET','POST'])
 def EPS():
 
     url_name = request.form.get('name')
-    # print(url_name)
 
-    lst = {url_name}
-    url_test = 'https://histock.tw/stock/chips.aspx?no=%s&m=mg'
-    for i in lst:
-        url = url_test %i
-    tables = pd.read_html(url)    
+    id =url_name
+    url = "https://goodinfo.tw/StockInfo/StockBzPerformance.asp?STOCK_ID=" + id +"&amp;YEAR_PERIOD=9999&amp;RPT_CAT=M_YEAR"
+    headers = {
+        "user-agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+    }
+    res = requests.get(url,headers = headers)
+    res.encoding = "utf-8"
+    soup = BeautifulSoup(res.text,"lxml")
+    data = soup.select_one("#txtFinDetailData")
+    dfs = pd.read_html(data.prettify())
+    df = dfs[0]
+    df.columns = df.columns.get_level_values(1)
+    df.columns = ["年度","股本(億)","財報評分","收盤價","平均價","漲跌(元)","漲跌(%)","營業收入(億)","營業毛利(億)","營業利益(億)","業外損益(億)",
+                "稅後淨利(億)","營業毛利(%)","營業利益(%)","業外損益(%)","稅後淨利(%)","ROE(%)","ROA(%)","稅後EPS","年增(元)",
+                "EPS(元)"]
+    for i in range(len(df)):
+        if df["年度"].iloc[i].isdigit() == False:
+            x = dt.datetime.now()
+            year = x.year
+            df.loc[0,"年度"] = year
+    df.index = df["年度"]
+    # df = df.drop(["年度"],axis = 1)
 
-    df1 = tables[0]
-    df1.columns = df1.columns.to_flat_index()
-    df1 = df1.rename(columns={(     '日期',     '日期'):     '日期',('資券互抵(張)','資券互抵(張)'):'資券互抵(張)',('資券當沖(%)','資券當沖(%)'):'資券當沖(%)',('券資比(%)','券資比(%)'):'券資比(%)'\
-                            ,(     '價格',     '價格'):     '價格',(     '比例',     '比例'):     '比例',(    '成交量',    '成交量'):    '成交量'},errors='raise')
-    df1.rename(columns ={   ('融資', '增加'): '融資增加',   ('融資', '餘額'):'融資餘額', ('融資', '使用率％'):'融資使用率%',('融券', '增加'):'融券增加',   ('融券', '餘額'): '融券餘額',(     '融券',    '使用率％'): '融券使用率%'},inplace = True)
-    blankIndex=[''] * len(df1)
-    df1.index=blankIndex
+    if len(df)>19:
+        df = df.drop(["年度"],axis = 0)
+        df = df.replace("-","0")
+    else:
+        df = df.replace("-","0")
 
-    # ascii：預設值True，如果資料中含有非ASCII的字元，則會類似\uXXXX的顯示資料，設定成False後，就能正常顯示
-    # records為切割DataFrame資料方法之一(allowed values are: {‘split’, ‘records’, ‘index’, ‘columns’, ‘values’, ‘table’}.)。
-    MTaSS = df1.to_json(orient = 'records',force_ascii=False)
-    # print(MTaSS)
-    return(MTaSS)
+    # print(df)
+    EPS = df.to_json(orient = 'records',force_ascii=False)
+    # print(EPS)
+    return(EPS)

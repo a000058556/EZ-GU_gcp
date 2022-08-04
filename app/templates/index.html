@@ -123,9 +123,9 @@
       </div>
       <!-- Sales Chart End -->
 
-
+      <!-- 表格樣板 -->
       <!-- Recent Sales Start -->
-      <div class="container-fluid pt-4 px-4">
+      <!-- <div class="container-fluid pt-4 px-4">
           <div class="bg-secondary text-center rounded p-4">
               <div class="d-flex align-items-center justify-content-between mb-4">
                   <h6 class="mb-0">Recent Salse</h6>
@@ -194,7 +194,7 @@
                   </table>
               </div>
           </div>
-      </div>
+      </div> -->
       <!-- Recent Sales End -->
 
 
@@ -962,9 +962,6 @@
     success:function(data) {
     // 成功取得資料後進行資料預處理
     var data = splitData_MACD(data);
-    console.log(typeof(data));
-    console.log(data.MACD_V);
-
     // 開始繪圖
     MACD_lin(data);
     MACD.setOption(option);

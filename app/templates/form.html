@@ -94,7 +94,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
-                <div class="bg-secondary rounded h-100 p-4">
+                <div class="bg-secondary rounded h-100 p-4" >
                     <h6 class="mb-4">填入購買項目</h6>
                     <form id="fromW" name="in_from" onsubmit="return check_in_from();">
                         <div class="mb-3">
@@ -131,6 +131,19 @@
                         </div> -->
                         <button id="submit" type="submit" class="btn btn-info">新增</button>
                     </form>
+                    <div>
+                        <hr>
+                        <div style="margin: 0.5rem 0 ; ">
+                            <h6>組合預期報酬率說明：</h6>
+                            <p style="margin-bottom: 0;">自選投資標的集合中，觀察組合於相對市場整體經濟風險所預期的報酬率；高報酬伴隨高風險，投資組合可用於評估找出相對低風險高報酬的投資標的。</p>
+                        </div>
+                        <hr style="margin: 0;">
+                        <div style="margin: 0.5rem 0 ; ">
+                            <h6>投資組合市場風險說明：</h6>
+                            <p>利用整體市場相關Beta值，及每一項標的相對於整體投資組合的比例，計算該投資組合在市場中的曝險程度。</p>
+                        </div>
+                        <hr style="margin-bottom: 0;">
+                    </div>
                 </div>
                 
             </div>
@@ -160,7 +173,7 @@
                 <div class="bg-secondary rounded h-100 p-4">
                     <h6 class="mb-4">評估結果</h6>
                     <div class="table-responsive">
-                        <table id="table_01" class="table  table-bordered table-hover">
+                        <table id="table_01" class="table  table-bordered table-hover" style="text-align: center; ">
                             <thead>
                                 <tr class="text-white">
                                     <th scope="col">購入日期</th>
@@ -268,7 +281,7 @@ function check_in_from(){
                 DateCell.innerText = data[0]['Date']; //設定資料
                 row.appendChild(DateCell);//加入資料
                 var idCell = document.createElement('td'); //建立第2列股票代碼 
-                idCell.innerText = data[0]['id']+'tw';
+                idCell.innerText = data[0]['id']+'.tw';
                 row.appendChild(idCell); 
                 var nameCell = document.createElement('td');//建立第3列name 
                 nameCell.innerHTML = data[0]['id_name']; 
@@ -401,7 +414,7 @@ function RROR_lin(_rawData) {
     radius: '140%', // 儀錶板大小
     startAngle: 180, // 起始角度
     endAngle: 0,
-    min: 0, // 最小刻度
+    min: -100, // 最小刻度
     max: 100,
     splitNumber: 8,  
     center: ['50%', '80%'],  // 儀錶板位置
@@ -458,18 +471,18 @@ function RROR_lin(_rawData) {
         }
     },
     axisLabel: {
-        color: '#464646',
+        color: '#ffff',
         fontSize: 20,
         distance: -60,
         formatter: function (value) {
         if (value === 87.50) {
-            return 'A';
+            return '需注意';
         } else if (value === 62.50) {
-            return 'B';
-        } else if (value === 37.50) {
-            return 'C';
-        } else if (value === 12.50) {
-            return 'D';
+            return '高風險';
+        } else if (value === -37.50) {
+            return '中風險';
+        } else if (value === -12.50) {
+            return '低風險';
         }
         return '';
         }
@@ -486,7 +499,7 @@ function RROR_lin(_rawData) {
         formatter: function (value) {
         return Math.round(value*100)/100 + '分';
         },
-        color: 'auto'
+        color: '#ffff'
     },
     data: [
         {
@@ -566,18 +579,18 @@ function MR_lin(_rawData) {
         }
     },
     axisLabel: {
-        color: '#464646',
-        fontSize: 20,
-        distance: -60,
+        color: '#ffff',
+        fontSize: 15,
+        distance: -70,
         formatter: function (value) {
         if (value === 87.50) {
-            return 'A';
+            return '注意';
         } else if (value === 62.50) {
-            return 'B';
+            return '高';
         } else if (value === 37.50) {
-            return 'C';
+            return '中';
         } else if (value === 12.50) {
-            return 'D';
+            return '低';
         }
         return '';
         }
