@@ -32,7 +32,7 @@ def upname(data):
 
 
 app = Flask(__name__)
-CORS(app) # 處理跨域同源政策問題
+# CORS(app) # 處理跨域同源政策問題
 # 首頁
 @app.route('/',methods=['GET'])
 def index():
@@ -1198,3 +1198,6 @@ def EPS():
     EPS = df.to_json(orient = 'records',force_ascii=False)
     # print(EPS)
     return(EPS)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80, debug=False)
