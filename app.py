@@ -854,6 +854,13 @@ def form_in():
         all_INPUT_buy['Cost'] = all_INPUT_buy['Cost'].astype(float, errors = 'raise')
         all_INPUT_buy['Share'] = all_INPUT_buy['Share'].astype(float, errors = 'raise')
 
+        print(stock_ALL_INFO_buy)
+        print(=======================================)
+        print(risk)
+        print(=======================================)
+        print(stock_YAHOO_ORDER_buy)
+        print(=======================================)
+        print(all_INPUT_buy)
         # 建立投資組合表格
         IP_buy = pd.DataFrame(columns=['id','id_name','YEAR','SP','BT','現價','成本基準','買入股數','買進手續費','買價','現值','持股漲跌幅'],index = SD_buy)
         if len(stock_ALL_INFO_buy) > 0:
