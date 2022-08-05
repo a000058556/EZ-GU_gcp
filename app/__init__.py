@@ -719,18 +719,18 @@ def form_in():
 
         for d in date_range:
             url = 'https://www.twse.com.tw/exchangeReport/MI_INDEX'
-            url_up = 'https://www.twse.com.tw/exchangeReport/MI_INDEX'
+            # url_up = 'https://www.twse.com.tw/exchangeReport/MI_INDEX'
             formdata = {
                 'response': 'csv',
                 'date': d, 
                 'type': 'ALLBUT0999',
             }
             # 取得資料並且解析(判斷是上櫃還是上市)
-            if str(name_st) in uplist:
-                r = requests.get(url_up, params=formdata)
-            else:
-                r = requests.get(url, params=formdata)
+            # if str(name_st) in uplist:
+            #     r = requests.get(url_up, params=formdata)
+            # else:
 
+            r = requests.get(url, params=formdata)
             r.text.encode('utf8')
             cr = csv.reader(r.text.splitlines(), delimiter=',')
             my_list = list(cr)
@@ -767,14 +767,14 @@ def form_in():
             
 
         # 18-21年指定個股平均報酬率
-        name_rr = str(upname(name_st))
+        name_rr = str('{}.tw'.format(name_st))
         df_rr = data.DataReader(name_rr, 'yahoo', start_yt, end_yt)
         df_rr['Change%RR'] = (df_rr['Close'] / df_rr['Close'].shift(1)-1)*100
         change_rr_avg = df_rr['Change%RR'].mean() * 100
 
         # 篩選資料並加入新DataFrame
         # print(df['證券代號'])
-        stock_NB_buy = pd.concat([stock_NB_buy, df.loc[upname(df['證券代號']) == upname(name_st)]], axis = 0)
+        stock_NB_buy = pd.concat([stock_NB_buy, df.loc[df['證券代號'] == name_st]], axis = 0)
         # print(stock_NB_buy)
 
         # 篩出指定欄位
@@ -788,7 +788,7 @@ def form_in():
         end = check_weekend(today)
         # start = "2022-07-24"
         # end = "2022-07-24"
-        name = upname(name_st)
+        name = str('{}.tw'.format(name_st))
         df_st_buy = data.DataReader(name, 'yahoo', start, end)
         # print(df_st_buy)
         
@@ -801,8 +801,7 @@ def form_in():
         # print(stock_ALL_INFO_buy)
 
         # 18-21年個股曝險程度及報酬率
-        # name = str('{}.tw'.format(name_st))
-        name = str(upname(name_st))
+        name = str('{}.tw'.format(name_st))
         df_days_st = data.DataReader(name, 'yahoo', start_yt, end_yt)
 
         # 個股標準差(standard_deviation)
