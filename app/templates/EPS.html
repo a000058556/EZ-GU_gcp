@@ -417,7 +417,7 @@
             },
             
             legend: {
-                data: ['平均價', '稅後EPS']
+                data: ['稅後EPS','平均價']
             },
             xAxis: [
                 {
@@ -432,20 +432,20 @@
             yAxis: [
                 {
                 type: 'value',
-                name: '平均價(元)',
-                min: 'dataMin',
-                max: 'dataMax',
-                interval: 5,
+                name: '稅後EPS(元)',
+                min: 0, //'dataMin'
+                max: 10, //'dataMax'
+                interval: 2.5,
                 axisLabel: {
                     formatter: '{value} '
                 }
                 },
                 {
                 type: 'value',
-                name: '稅後EPS(元)',
-                min: 'dataMin',
-                max: 'dataMax',
-                interval: 5,
+                name: '平均價(元)',
+                min: 0,
+                max: 100,
+                interval: 25,
                 axisLabel: {
                     formatter: '{value} '
                 }
