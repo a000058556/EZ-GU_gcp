@@ -53,8 +53,8 @@
                         </div>
                         <div class="mb-3 from-group">
                             <label for="date" class="form-label ">交易日期</label>
-                            <div class="input-group date bootstrap-datetimepicker-widget" id='datepicker_1'>
-                                <input type="text" autocomplete="off" class="form-control bootstrap-datetimepicker-widget" id="date_1" name="input_Date" aria-label="in_from"/>
+                            <div class="input-group date bootstrap-datetimepicker-widget" >
+                                <input type="text" autocomplete="off" class="form-control bootstrap-datetimepicker-widget" id='datepicker_1'name="input_Date" aria-label="in_from"/>
                                 <span class="input-group-append bootstrap-datetimepicker-widget">
                                     <span class="input-group-text  d-block">
                                         <i class="fa fa-calendar"></i>
@@ -166,13 +166,24 @@ $(".datepicker").attr("autocomplete", "off");
 $(function(){
     $('#datepicker_1').datepicker({
         // date:null, //一開始輸入框的日期為空
-        default:false,
-        maxDate: 0,
+        // default:false,
+        // maxDate: 0,
         format: 'yyyy-mm-dd', //日期的顯示格式
         // // locale: moment.locale('zh-tw'), //國別
         daysOfWeekDisabled: [0, 6], //隱藏的天數0為周日6為星期六
         orientation:'bottom',
     });
+})
+
+
+// 'blur' 取消點選的時候
+document.getElementById('datepicker_1').addEventListener('blur', (e) => {
+    // console.log(e)
+    let value = e.target.value
+    let today = new Date().getTime()
+    let select = new Date(value).getTime()
+    let current = new Date((select > today) ? today : select)
+    document.getElementById('datepicker_1').value = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`
 })
 
 
