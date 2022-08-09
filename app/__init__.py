@@ -1468,13 +1468,13 @@ def JDK_2():
 
 
 # /MACD_1路由
-# /選股-技術指標MACD多方((-3天) < (-2天) < (-1天))
+# /選股-技術指標MACD多方((-2天) MACD<MACD Signal &(-1天) MACD>MACD Signal)
 @app.route('/MACD_1',methods=['GET','POST'])
 def MACD_1():
 
     conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
-    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND SLOWK < SLOWD) AND Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK > SLOWD'
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND MACD < MACDsignal) AND Date = (SELECT MAX(Date) FROM stock_info) AND MACD > MACDsignal;'
 
     print(sql)
     cur.execute(sql)
