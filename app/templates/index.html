@@ -36,7 +36,7 @@
                   <div class="bg-secondary rounded p-4" >
                       <div class="d-flex align-items-center justify-content-between mb-4">
                           <h3 id="k_line_ha" class="mb-0">{{name_ha}}</h3>
-                          <a href="">Show</a>
+                          <button class="btn btn-link" id="k_line_h" href="">重新整理</button>
                       </div>
                       <div id="K_line" style="width: 100%;height:500px;"></div>
                   </div>
@@ -53,23 +53,39 @@
       </div>
 
       <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="col-sm-12 col-xl-6">
+        <div class="row g-4" >
+            <div class="col-sm-12 col-xl-6 accordion-item" >
                 <div class="bg-secondary rounded p-4" >
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">BBAND</h6>
-                        <a href="">Show</a>
+
+                    <div class="d-flex align-items-center justify-content-between mb-4" >
+                        <h6  class="mb-0 accordion-header">BBAND</h6>
+                        <button id="btn_BBAND" class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" >
+                          縮放
+                        </button>
                     </div>
-                    <div id="BBAND" style="width: 100%;height:500px;"></div>
+                    <div style="width: 100%; position: relative;">
+                      <div id="collapseOne" class="accordion-collapse collapse" style="width: 100%; height: 500px;">
+                        <div id="BBAND" style="position: relative;"></div>
+                      </div>
+                    </div>
+                      
                 </div>
             </div>
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-secondary rounded p-4">
+
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">MACD</h6>
-                        <a href="">Show</a>
+                        <h6 class="mb-0 mb-0 accordion-header">MACD</h6>
+                        <button id="btn_MACD" class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#MACD_h">
+                          縮放
+                        </button>
                     </div>
-                    <div id="MACD" style="width: 100%;height:500px;"></div>
+                    <div style="width: 100%; position: relative;">
+                      <div id="MACD_h" class="accordion-collapse collapse" style="width: 100%; height: 500px;">
+                        <div id="MACD" style="position: relative;"></div>
+                      </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -79,20 +95,35 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
               <div class="bg-secondary rounded p-4">
+
                   <div class="d-flex align-items-center justify-content-between mb-4">
-                      <h6 class="mb-0">Change_MK</h6>
-                      <a href="">Show</a>
+                      <h6 class="mb-0 accordion-header">Change_MK</h6>
+                      <button id="btn_Change_MK" class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#Change_MK_h">
+                        縮放
+                      </button>
                   </div>
-                  <div id="Change_MK" style="width: 100%;height:500px;"></div>
+                  <div style="width: 100%; position: relative;">
+                    <div id="Change_MK_h" class="accordion-collapse collapse" style="width: 100%; height: 500px;">
+                      <div id="Change_MK" style="position: relative;"></div>
+                    </div>
+                  </div>
+
               </div>
             </div>
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-secondary rounded p-4" >
+
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">OBV</h6>
-                        <a href="">Show</a>
+                        <h6 class="mb-0 accordion-header">OBV</h6>
+                        <button id="btn_OBV" class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#OBV_h">
+                          縮放
+                        </button>
                     </div>
-                    <div id="OBV" style="width: 100%;height:500px;"></div>
+                    <div style="width: 100%; position: relative;">
+                      <div id="OBV_h" class="accordion-collapse collapse" style="width: 100%; height: 500px;">
+                        <div id="OBV" style="position: relative;"></div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,20 +133,34 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
               <div class="bg-secondary rounded p-4">
+
                   <div class="d-flex align-items-center justify-content-between mb-4">
-                      <h6 class="mb-0">KDJ</h6>
-                      <a href="">Show All</a>
+                      <h6 class="mb-0 accordion-header">KDJ</h6>
+                      <button id="btn_KDJ" class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#KDJ_h">
+                        縮放
+                      </button>
                   </div>
-                  <div id="KDJ" style="width: 100%;height:500px;"></div>
+                  <div style="width: 100%; position: relative;">
+                    <div id="KDJ_h" class="accordion-collapse collapse" style="width: 100%; height: 500px;">
+                      <div id="KDJ" style="position: relative;"></div>
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-secondary rounded p-4" >
+
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">RSI</h6>
-                        <a href="">Show</a>
+                        <h6 class="mb-0 accordion-header">RSI</h6>
+                        <button id="btn_RSI" class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#RSI_h">
+                          縮放
+                        </button>
                     </div>
-                    <div id="RSI" style="width: 100%;height:500px;"></div>
+                    <div style="width: 100%; position: relative;">
+                      <div id="RSI_h" class="accordion-collapse collapse" style="width: 100%; height: 500px;">
+                        <div id="RSI" style="position: relative;"></div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,6 +193,7 @@
 {% block script %}
 <!-- 繪圖 -->
 <script type="text/javascript">
+
 
     var myChart = echarts.init(document.getElementById('K_line'), 'dark');
     // , 'dark' 為暗色版
@@ -606,17 +652,101 @@
     
     // 預設頁面: 發送ajax請求，從後台獲取json數據
     $(document).ready(function () {  
-      getData_BBAND();
-      getData_Change_MK();
-      getData_MACD();
       getData_Kline();
-      getData_KDJ();
-      getData_OBV();
-      getData_RSI();
+      // getData_BBAND();
+      // getData_Change_MK();
+      // getData_MACD();
+      // getData_KDJ();
+      // getData_OBV();
+      // getData_RSI();
       // console.log(app.rawData);
     });
-  
 
+// 收合設定區==========================================
+
+    var width = $("#collapseOne").width(); 
+    var height = $("#collapseOne").height(); 
+    $("#BBAND").css("width", width).css("height", height);
+
+    let cont = 0
+    $('#btn_BBAND').click(function () {
+      if(cont == 0){
+        cont ++;
+        getData_BBAND()
+        $('#BBAND').css('width', '100%');
+      }else{}return false;
+    });
+
+
+    var width = $("#MACD_h").width(); 
+    var height = $("#MACD_h").height(); 
+    $("#MACD").css("width", width).css("height", height);
+
+    let cont_1 = 0
+    $('#btn_MACD').click(function () {
+      if(cont_1 == 0){
+        cont_1 ++;
+        getData_MACD()
+        $('#MACD').css('width', '100%');
+      }else{}return false;
+    });
+
+
+    var width = $("#Change_MK_h").width(); 
+    var height = $("#Change_MK_h").height(); 
+    $("#Change_MK").css("width", width).css("height", height);
+
+    let cont_2 = 0
+    $('#btn_Change_MK').click(function () {
+      if(cont_2 == 0){
+        cont_2 ++;
+        getData_Change_MK()
+        $('#Change_MK').css('width', '100%');
+      }else{}return false;
+    });
+
+
+    var width = $("#OBV_h").width(); 
+    var height = $("#OBV_h").height(); 
+    $("#OBV").css("width", width).css("height", height);
+
+    let cont_3 = 0
+    $('#btn_OBV').click(function () {
+      if(cont_3 == 0){
+        cont_3 ++;
+        getData_OBV()
+        $('#OBV').css('width', '100%');
+      }else{}return false;
+    });
+
+    var width = $("#KDJ_h").width(); 
+    var height = $("#KDJ_h").height(); 
+    $("#KDJ").css("width", width).css("height", height);
+
+    let cont_4 = 0
+    $('#btn_KDJ').click(function () {
+      if(cont_4 == 0){
+        cont_4 ++;
+        getData_KDJ()
+        $('#KDJ').css('width', '100%');
+      }else{}return false;
+    });
+
+
+    var width = $("#RSI_h").width(); 
+    var height = $("#RSI_h").height(); 
+    $("#RSI").css("width", width).css("height", height);
+
+    let cont_5 = 0
+    $('#btn_RSI').click(function () {
+      if(cont_5 == 0){
+        cont_5 ++;
+        getData_RSI()
+        $('#RSI').css('width', '100%');
+      }else{}return false;
+    });
+  
+// 收合設定區==========================================
     
     // 以下為K_line
     function getData_Kline() {
@@ -627,7 +757,11 @@
     type:'POST',
     async:false,
     dataType:'json',
-    
+    beforeSend: function () {
+        // 禁用按鈕防止重複提交
+        document.querySelector("#k_line_h").textContent = 'Loading...';
+        $("#k_line_h").attr({ disabled: "disabled" });
+    },
     success:function(data) {
     // 成功取得資料後進行資料預處理
     // console.log(typeof(data));
@@ -855,14 +989,18 @@
         }),
         true
       )
+    document.querySelector("#k_line_h").textContent = '重新整理';
+    $("#k_line_h").removeAttr("disabled");
     
     },
     error:function (msg) {
     console.log(msg);
     alert('系統發生錯誤');
     }
+    
     })
     };
+    
     window.addEventListener("resize",function(){
     myChart.resize();
     });
@@ -1061,14 +1199,12 @@
     var option;
     
     function getData_BBAND() {
-    $.ajax({
-    
+    $.ajax({ 
     url:'/BBAND',
     data:{},
     type:'POST',
     async:false,
     dataType:'json',
-    
     success:function(data) {
     // 成功取得資料後進行資料預處理
     var data = splitData_BBAND(data);
@@ -1079,6 +1215,8 @@
     // 開始繪圖
     BBAND_lin(data);
     BBAND.setOption(option);
+    // document.querySelector("#btn_BBAND").textContent = 'Show';
+    // $("#btn_BBAND").removeAttr("disabled");
   },
     error:function (msg) {
     console.log(msg);
@@ -1093,9 +1231,6 @@
     function BBAND_lin(data) {
       option = {
           animation: false,
-          // title: {
-          //   text: 'BBAND'
-          // },
           backgroundColor: '#191C24',
           legend: {
             bottom: 10,
@@ -1293,13 +1428,6 @@
                 type:'solid'
               }
             },
-            // {
-            //   name: 'Volume',
-            //   type: 'bar',
-            //   xAxisIndex: 1,
-            //   yAxisIndex: 1,
-            //   data: data.volumes
-            // }
           ]
         };
       

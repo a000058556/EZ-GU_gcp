@@ -236,13 +236,19 @@
                     <div class="nav">
                         <button id="RSI_1" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages" type="button" role="tab"
-                                aria-controls="v-pills-messages" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1();">RSI(超買賣)</button>
+                                aria-controls="v-pills-messages" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1();">RSI(超買)</button>
+                        <button id="RSI_1_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-messages_1_2" type="button" role="tab"
+                                aria-controls="v-pills-messages_1_2" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1_2();">RSI(超賣)</button>
                         <button id="RSI_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_02" type="button" role="tab"
                                 aria-controls="v-pills-messages_02" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_2();">RSI(前天比)</button>
                         <button id="JDK_1" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_03" type="button" role="tab"
-                                aria-controls="v-pills-messages_03" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1();">JDK(超買賣)</button>
+                                aria-controls="v-pills-messages_03" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1();">JDK(超買)</button>
+                        <button id="JDK_1_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-messages_03_2" type="button" role="tab"
+                                aria-controls="v-pills-messages_03_2" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1_2();">JDK(超賣)</button>
                         <button id="JDK_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_04" type="button" role="tab"
                                 aria-controls="v-pills-messages_04" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_2();">JDK(前天比)</button>
@@ -254,6 +260,24 @@
 
                         <div class="table-responsive tab-pane rounded fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" >
                             <table id="RSI_from_1" class="table table-bordered border-light text-light mb-0" style="text-align: center; line-height:35px;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">日期</th>
+                                        <th scope="col">股票代號</th>
+                                        <th scope="col">High</th>
+                                        <th scope="col">Low</th>
+                                        <th scope="col">Open</th>
+                                        <th scope="col">Close</th>
+                                        <th scope="col">Volume</th>
+                                    </tr>
+                                </thead>
+                                    <tbody id="tb">
+                                    </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive tab-pane rounded fade" id="v-pills-messages_1_2" role="tabpanel" aria-labelledby="v-pills-messages-tab" >
+                            <table id="RSI_from_1_2" class="table table-bordered border-light text-light mb-0" style="text-align: center; line-height:35px;">
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col">日期</th>
@@ -306,6 +330,24 @@
                             </table>
                         </div>
 
+                        <div class="table-responsive tab-pane rounded fade" id="v-pills-messages_03_2" role="tabpanel" aria-labelledby="v-pills-messages-tab_03_2" >
+                            <table id="JDK_from_1_2" class="table table-bordered border-light text-light mb-0" style="text-align: center; line-height:35px;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">日期</th>
+                                        <th scope="col">股票代號</th>
+                                        <th scope="col">High</th>
+                                        <th scope="col">Low</th>
+                                        <th scope="col">Open</th>
+                                        <th scope="col">Close</th>
+                                        <th scope="col">Volume</th>
+                                    </tr>
+                                </thead>
+                                    <tbody id="tb">
+                                    </tbody>
+                            </table>
+                        </div>
+
                         <div class="table-responsive tab-pane rounded fade" id="v-pills-messages_04" role="tabpanel" aria-labelledby="v-pills-messages-tab_04" >
                             <table id="JDK_from_2" class="table table-bordered border-light text-light mb-0" style="text-align: center; line-height:35px;">
                                 <thead class="table-light">
@@ -330,12 +372,12 @@
 
             <!-- 熱度圖 -->
             <div class="col-12">
-                <div class="bg-secondary rounded h-100 p-4">
+                <div class="bg-secondary rounded h-100 p-4" style="width: 100%; position: relative;">
                     <h2 >熱度圖</h2>
-                    <img src="/static/img/SP.jpg" class="col-12">
+                    <div id="treemap" style="resize:both; overflow: auto; width: 100%; height:900px"></div> 
+                    <!--  overflow: auto; -->
                 </div>
             </div>
-            
         </div>
     </div>
     <!-- Widget End -->
@@ -878,7 +920,7 @@ function check_VCP(){
         }
 </script>
 
-<!-- RSI(RSI_1)(超買賣) -->
+<!-- RSI(RSI_1)(超買) -->
 <script>
     let cont_07 = 0;
     function check_RSI_1(){
@@ -942,13 +984,90 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         RSI.appendChild(row); 
-                        document.querySelector("#RSI_1").textContent = 'RSI(超買賣)';
+                        document.querySelector("#RSI_1").textContent = 'RSI(超買)';
                         $("#RSI_1").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#RSI_1").textContent = 'RSI(超買賣)';
+                document.querySelector("#RSI_1").textContent = 'RSI(超買)';
+                $("#RSI_1").removeAttr("disabled");
+            }
+            return false;
+        }
+</script>
+
+<!-- RSI(RSI_1_2)(超賣) -->
+<script>
+    let cont_11 = 0;
+    function check_RSI_1_2(){
+            console.log(cont_11);
+            
+            if(cont_11 == 0){
+            cont_11 ++;
+            
+            $.ajax({
+                type: "post", // 以post方式發起請求
+                url: "/RSI_1_2", // 你的請求鏈接
+                data:$().serialize(), 
+                beforeSend: function () {
+                    // 禁用按鈕防止重複提交
+                    document.querySelector("#RSI_1_2").textContent = '讀取中請稍後';
+                    $("#RSI_1_2").attr({ disabled: "disabled" });
+                },
+                success(data){                          
+                    var data = eval(data);
+                    // 抓取要寫入的格
+                    var RSI_1_2 = document.getElementById('RSI_from_1_2'); 
+                    // 呼叫建立資料方法 
+                    getDataRow(data);        
+        
+                    function getDataRow(data){ 
+                        // console.log(data);
+                        for(var i = 0; i < 21; i++){
+                            console.log(getStr(data[i][0]));
+                            var row = document.createElement('tr'); //建立row 
+        
+                            var ACell = document.createElement('td'); //建立第一列
+                            ACell.innerText = data[i][1]; //設定資料
+                            row.appendChild(ACell);//加入資料
+        
+                            var BCell = document.createElement('td'); //建立第2列 
+                            var to_nameCell = document.createElement('a'); //建立a標籤
+                            var to_nameText = document.createTextNode(data[i][0]); //建立a標籤文字
+        
+                            to_nameCell.setAttribute('href','/'+'SP_03/'+getStr(data[i][0])); //將href加入標籤
+                            to_nameCell.setAttribute('class','btn-outline-warning'); //將href加入標籤
+                            to_nameCell.setAttribute('target','_blank'); //開新視窗
+                            to_nameCell.appendChild(to_nameText); //將文字append到標籤
+        
+                            BCell.appendChild(to_nameCell); //將標籤append到td
+                            row.appendChild(BCell); //將td append到 tr
+        
+                            var CCell = document.createElement('td');//建立第3  
+                            CCell.innerHTML = data[i][2];
+                            row.appendChild(CCell); 
+                            var DCell = document.createElement('td');//建立第4 
+                            DCell.innerHTML = data[i][3];
+                            row.appendChild(DCell); 
+                            var ECell = document.createElement('td');//建立第5
+                            ECell.innerHTML = data[i][4]; 
+                            row.appendChild(ECell); 
+                            var FCell = document.createElement('td');//建立第6
+                            FCell.innerHTML = data[i][5];
+                            row.appendChild(FCell); 
+                            var GCell = document.createElement('td');//建立第7
+                            GCell.innerHTML = data[i][6];
+                            row.appendChild(GCell); 
+                            console.log(row);
+                        RSI_1_2.appendChild(row); 
+                        document.querySelector("#RSI_1_2").textContent = 'RSI(超賣)';
+                        $("#RSI_1_2").removeAttr("disabled");
+                        }
+                    }}
+                })
+            }else{
+                document.querySelector("#RSI_1").textContent = 'RSI(超賣)';
                 $("#RSI_1").removeAttr("disabled");
             }
             return false;
@@ -1023,15 +1142,15 @@ function check_VCP(){
                         }
                     }}
                 })
-            }else{
-                document.querySelector("#RSI_2").textContent = 'RSI(前天比)';
-                $("#RSI_2").removeAttr("disabled");
+                }else{
+                    document.querySelector("#RSI_2").textContent = 'RSI(前天比)';
+                    $("#RSI_2").removeAttr("disabled");
+                }
+                return false;
             }
-            return false;
-        }
 </script>
 
-<!-- JDK(JDK_1)(超買賣) -->
+<!-- JDK(JDK_1)(超買) -->
 <script>
     let cont_09 = 0;
     function check_JDK_1(){
@@ -1095,14 +1214,91 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         JDK.appendChild(row); 
-                        document.querySelector("#JDK_1").textContent = 'JDK(超買賣)';
+                        document.querySelector("#JDK_1").textContent = 'JDK(超買)';
                         $("#JDK_1").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#JDK_1").textContent = 'JDK(超買賣)';
+                document.querySelector("#JDK_1").textContent = 'JDK(超買)';
                 $("#JDK_1").removeAttr("disabled");
+            }
+            return false;
+        }
+</script>
+
+<!-- JDK(JDK_1_2)(超賣) -->
+<script>
+    let cont_12 = 0;
+    function check_JDK_1_2(){
+            console.log(cont_12);
+            
+            if(cont_12 == 0){
+            cont_12 ++;
+            
+            $.ajax({
+                type: "post", // 以post方式發起請求
+                url: "/JDK_1_2", // 你的請求鏈接
+                data:$().serialize(), 
+                beforeSend: function () {
+                    // 禁用按鈕防止重複提交
+                    document.querySelector("#JDK_1_2").textContent = '讀取中請稍後';
+                    $("#JDK_1_2").attr({ disabled: "disabled" });
+                },
+                success(data){                          
+                    var data = eval(data);
+                    // 抓取要寫入的格
+                    var JDK = document.getElementById('JDK_from_1_2'); 
+                    // 呼叫建立資料方法 
+                    getDataRow(data);        
+        
+                    function getDataRow(data){ 
+                        // console.log(data);
+                        for(var i = 0; i < 21; i++){
+                            console.log(getStr(data[i][0]));
+                            var row = document.createElement('tr'); //建立row 
+        
+                            var ACell = document.createElement('td'); //建立第一列
+                            ACell.innerText = data[i][1]; //設定資料
+                            row.appendChild(ACell);//加入資料
+        
+                            var BCell = document.createElement('td'); //建立第2列 
+                            var to_nameCell = document.createElement('a'); //建立a標籤
+                            var to_nameText = document.createTextNode(data[i][0]); //建立a標籤文字
+        
+                            to_nameCell.setAttribute('href','/'+'SP_03_2/'+getStr(data[i][0])); //將href加入標籤
+                            to_nameCell.setAttribute('class','btn-outline-warning'); //將href加入標籤
+                            to_nameCell.setAttribute('target','_blank'); //開新視窗
+                            to_nameCell.appendChild(to_nameText); //將文字append到標籤
+        
+                            BCell.appendChild(to_nameCell); //將標籤append到td
+                            row.appendChild(BCell); //將td append到 tr
+        
+                            var CCell = document.createElement('td');//建立第3  
+                            CCell.innerHTML = data[i][2];
+                            row.appendChild(CCell); 
+                            var DCell = document.createElement('td');//建立第4 
+                            DCell.innerHTML = data[i][3];
+                            row.appendChild(DCell); 
+                            var ECell = document.createElement('td');//建立第5
+                            ECell.innerHTML = data[i][4]; 
+                            row.appendChild(ECell); 
+                            var FCell = document.createElement('td');//建立第6
+                            FCell.innerHTML = data[i][5];
+                            row.appendChild(FCell); 
+                            var GCell = document.createElement('td');//建立第7
+                            GCell.innerHTML = data[i][6];
+                            row.appendChild(GCell); 
+                            console.log(row);
+                        JDK.appendChild(row); 
+                        document.querySelector("#JDK_1_2").textContent = 'JDK(超賣)';
+                        $("#JDK_1_2").removeAttr("disabled");
+                        }
+                    }}
+                })
+            }else{
+                document.querySelector("#JDK_1_2").textContent = 'JDK(超賣)';
+                $("#JDK_1_2").removeAttr("disabled");
             }
             return false;
         }
@@ -1182,5 +1378,45 @@ function check_VCP(){
             }
             return false;
         }
+</script>
+
+
+<script>
+    var width = $("#treemap").width(); 
+    var height = $("#treemap").height(); 
+    $(document).ready(function(){
+        $(".plot-container").css("width", width).css("height", height);
+    })
+</script>
+
+
+
+<!-- 熱度圖 -->
+<script>
+
+    d={{ graphJSON | safe }};
+    Plotly.newPlot('treemap', d, {})
+
+    // var layout = {
+    //     autosize: false,
+    //     width: 500,
+    //     height: 500,
+    //     margin: {
+    //         l: 50,
+    //         r: 50,
+    //         b: 100,
+    //         t: 100,
+    //         pad: 4
+    //     },
+    // };
+
+    function cb(){
+        $.getJSON({
+        url:'/widget',success : function(result){
+        Plotly.newPlot('treemap',result);
+        }
+        });
+    }  
+
 </script>
 {% endblock %}

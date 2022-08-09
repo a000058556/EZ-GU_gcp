@@ -6,17 +6,23 @@ import json
 # 以下為投資組合
 import pandas as pd
 from pandas_datareader import data
-# from pandas_datareader.yahoo.daily import YahooDailyReader
 import requests
 import csv
 import time as ti
 from datetime import datetime
-# from datetime import date
 import datetime  as dt
 # ======================================================================
 # 以下為選股
 import bs4
 from bs4 import BeautifulSoup
+# ======================================================================
+# 熱度圖
+import numpy as np
+import finlab
+from finlab import data as data1
+import plotly.express as px
+import plotly
+import plotly.graph_objects as go
 # ======================================================================
 
 # 上櫃清單&辨識函式(輸出為: 編號+.tw或.two)
@@ -41,12 +47,71 @@ def index():
     name_ha = '2330.tw'
     return render_template('index.html', active01 = active, tiele = tiele, name_ha = name_ha)
 
+
+# about
+@app.route('/about',methods=['GET'])
+def about():
+    tiele = 'about'
+    return render_template('about.html', tiele = tiele)
+
+
 # /選股
 @app.route('/widget',methods=['GET','POST'])
 def widget():
     active = 'active'
     tiele = '選股推薦'
-    return render_template('widget.html', active02 = active, tiele = tiele)
+    
+    def plot_tw_stock_treemap(start=None, end=None, area_ind='market_value', item='return_ratio', clip=None):
+  
+        # 讀取存取json檔
+        
+        with open("./app/static/hotmap_json",'r', encoding="utf-8") as f:
+            type_json =json.load(f)
+            df =pd.json_normalize(type_json)
+
+            if df is None:
+                return None
+            df['custom_item_label'] = round(df[item], 2).astype(str)
+
+            if area_ind not in ["market_value", "turnover", "turnover_ratio"]:
+                return None
+
+            if item in ['return_ratio']:
+                color_continuous_midpoint = 0
+            else:
+                color_continuous_midpoint = np.average(df[item], weights=df[area_ind])
+            
+            
+            fig = px.treemap(df,
+                            path=['country', 'market', 'category', 'stock_id_name'],
+
+                            values=area_ind, # 占比大小由市值決定
+                            color=item,  #  顏色由漲跌幅決定     
+
+                            #  熱度圖區塊顏色設定color_continuous_scal(也可用官方搭配好顏色)
+                            color_continuous_scale=[[0, '#ffc107'], [0.5,'white' ], [1.0, '#fd7e14']],
+                            
+                            color_continuous_midpoint=color_continuous_midpoint,
+                            custom_data=['custom_item_label', 'close', 'turnover'],
+                            # width=1200,height=900
+                            )
+
+            
+         
+            fig.update_traces(textposition='middle center',
+                            textfont_size=24,
+                            
+                            # 鼠標滑過顯示訊息
+                            hovertemplate ="收盤價: $ %{customdata[1]:.2f}<br>漲跌幅: %{color:.2f}%"
+                            )
+        # 熱度圖背景色、字形顏色設定
+            fig.update_layout(
+                  paper_bgcolor= '#191C24',title_font_color='white',font_color='white',autosize=True
+                  )
+        return fig                
+            
+    graphJSON = json.dumps(plot_tw_stock_treemap(), cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('widget.html', active02 = active, tiele = tiele, graphJSON=graphJSON)
 
 # /投資組合
 @app.route('/form',methods=['GET','POST'])
@@ -1159,13 +1224,56 @@ def SPK_6():
     return(j)
 
 # /RSI_1路由
-# /選股-技術指標RSI條件(超買%超賣)
+# /選股-技術指標RSI條件(超買)
 @app.route('/RSI_1',methods=['GET','POST'])
 def RSI_1():
 
     conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
-    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND RSI9>80 AND RSI9<20'
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND RSI9>80'
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+    print(u)
+
+    jsonData = []
+
+    if u == ():
+        u = ((("無符合條件股票","請改用其他條件")))
+        for data in u:
+            result = []
+            result.append(data)
+
+
+            jsonData.append(result)
+
+            j = json.dumps(jsonData, ensure_ascii=False)
+    else:
+        for data in u:
+            result = []
+            result.append(str(data[0]))
+            result.append(str(data[1]))
+            result.append(round((data[2]),2))
+            result.append(round((data[3]),2))
+            result.append(round((data[4]),2))
+            result.append(round((data[5]),2))
+            result.append(round((data[6]),2))
+
+            jsonData.append(result)
+
+            j = json.dumps(jsonData)
+    
+    print(j)
+    return(j)
+
+# /RSI_1路由
+# /選股-技術指標RSI條件(超賣)
+@app.route('/RSI_1_2',methods=['GET','POST'])
+def RSI_1_2():
+
+    conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND RSI9<20'
     print(sql)
     cur.execute(sql)
     u = cur.fetchall()
@@ -1239,13 +1347,13 @@ def RSI_2():
 
 
 # /JDK_1路由
-# /選股-技術指標JDK條件(超買%超賣)
+# /選股-技術指標JDK條件(超買)
 @app.route('/JDK_1',methods=['GET','POST'])
 def JDK_1():
 
     conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
-    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE SLOWK > 80 AND SLOWK < 20'
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK > 80 '
 
     print(sql)
     cur.execute(sql)
@@ -1279,6 +1387,49 @@ def JDK_1():
             j = json.dumps(jsonData)
    
     return(j)
+
+# /JDK_1_2路由
+# /選股-技術指標JDK條件(超賣)
+@app.route('/JDK_1_2',methods=['GET','POST'])
+def JDK_1_2():
+
+    conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK < 20'
+
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+
+    jsonData = []
+
+    if u == ():
+        u = ((("無符合條件股票","請改用其他條件")))
+        for data in u:
+            result = []
+            result.append(data)
+
+
+            jsonData.append(result)
+
+            j = json.dumps(jsonData, ensure_ascii=False)
+    else:
+        for data in u:
+            result = []
+            result.append(str(data[0]))
+            result.append(str(data[1]))
+            result.append(round((data[2]),2))
+            result.append(round((data[3]),2))
+            result.append(round((data[4]),2))
+            result.append(round((data[5]),2))
+            result.append(round((data[6]),2))
+
+            jsonData.append(result)
+
+            j = json.dumps(jsonData)
+   
+    return(j)
+
 
 # /JDK_2路由
 # /選股-技術指標JDK條件((-2天) K < D (-1天) K > D)
@@ -1316,12 +1467,40 @@ def JDK_2():
     return(j)
 
 
+# /MACD_1路由
+# /選股-技術指標MACD多方((-3天) < (-2天) < (-1天))
+@app.route('/MACD_1',methods=['GET','POST'])
+def MACD_1():
 
+    conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND SLOWK < SLOWD) AND Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK > SLOWD'
 
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
 
+    # 轉換成JSON數據格式
+    jsonData = []
 
+    for data in u:
+        result = []
+        result.append(str(data[0]))
+        result.append(str(data[1]))
+        result.append(round((data[2]),2))
+        result.append(round((data[3]),2))
+        result.append(round((data[4]),2))
+        result.append(round((data[5]),2))
+        result.append(round((data[6]),2))
 
+        jsonData.append(result)
 
+        # json.dumps()用於將dict類型的數據轉成str，因為如果直接將dict類型的數據寫入json會發生報錯，因此將數據寫入時需要用到該函數。
+        # print(jsonData)
+        j = json.dumps(jsonData)
+        print(j)
+
+    return(j)
 
 
 
@@ -1367,4 +1546,8 @@ def EPS():
     EPS = df.to_json(orient = 'records',force_ascii=False)
     # print(EPS)
     return(EPS)
+
+
+
+
 

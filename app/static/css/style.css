@@ -239,7 +239,37 @@ body {
     background: var(--secondary);
 }
 
+/* 選單樣式04 */
+.sidebar .navbar .navbar-nav .nav-linke  {
+    padding: 7px 20px;
+    color: var(--light);
+    font-weight: 500;
+    border-left: 3px solid var(--secondary);
+    border-radius: 0 30px 30px 0;
+    outline: none;
+}
 
+.sidebar .navbar .navbar-nav .nav-linke:hover,
+.sidebar .navbar .navbar-nav .nav-linke.active {
+    color: #3e5eff;
+    background: var(--dark);
+    border-color: #3e5eff;
+}
+
+.sidebar .navbar .navbar-nav .nav-linke i {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+    border-radius: 40px;
+}
+
+.sidebar .navbar .navbar-nav .nav-linke:hover i,
+.sidebar .navbar .navbar-nav .nav-linke.active i {
+    background: var(--secondary);
+}
 
 
 .sidebar .navbar .dropdown-toggle::after {
@@ -427,3 +457,9 @@ body {
     height: 50vh;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+
+
+div::-webkit-scrollbar {
+    display: none;
+  }
