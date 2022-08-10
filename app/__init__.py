@@ -1502,6 +1502,40 @@ def MACD_1():
 
     return(j)
 
+# /MACD_2路由
+# /選股-技術指標MACD多方((-2天) MACD<MACD Signal &(-1天) MACD>MACD Signal)
+@app.route('/MACD_2',methods=['GET','POST'])
+def MACD_2():
+
+    conn = pymysql.connect(host='localhost',user='root',password='a000000',db='stock_analysis')
+    cur = conn.cursor()
+    sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND MACD > MACDsignal) AND Date = (SELECT MAX(Date) FROM stock_info) AND MACD < MACDsignal;'
+
+    print(sql)
+    cur.execute(sql)
+    u = cur.fetchall()
+
+    # 轉換成JSON數據格式
+    jsonData = []
+
+    for data in u:
+        result = []
+        result.append(str(data[0]))
+        result.append(str(data[1]))
+        result.append(round((data[2]),2))
+        result.append(round((data[3]),2))
+        result.append(round((data[4]),2))
+        result.append(round((data[5]),2))
+        result.append(round((data[6]),2))
+
+        jsonData.append(result)
+
+        # json.dumps()用於將dict類型的數據轉成str，因為如果直接將dict類型的數據寫入json會發生報錯，因此將數據寫入時需要用到該函數。
+        # print(jsonData)
+        j = json.dumps(jsonData)
+        print(j)
+
+    return(j)
 
 
 
