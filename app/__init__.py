@@ -40,7 +40,7 @@ def upname(data):
 app = Flask(__name__)
 # CORS(app) # 處理跨域同源政策問題
 # 首頁
-@app.route('/',methods=['GET'])
+@app.route('/EZ-GU',methods=['GET'])
 def index():
     active = 'active'
     tiele = 'EZ-GU'
@@ -49,9 +49,9 @@ def index():
 
 
 # about
-@app.route('/about',methods=['GET'])
+@app.route('/',methods=['GET'])
 def about():
-    tiele = 'about'
+    tiele = 'BDSE25-4'
     return render_template('about.html', tiele = tiele)
 
 
@@ -117,7 +117,7 @@ def widget():
 @app.route('/form',methods=['GET','POST'])
 def form():
     active = 'active'
-    tiele = '投資組合分析'
+    tiele = '投資組合評估'
     return render_template('form.html', active03 = active, tiele = tiele)
 
 # /table

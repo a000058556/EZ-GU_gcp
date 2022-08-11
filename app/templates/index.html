@@ -31,8 +31,8 @@
 
       <!-- Sales Chart Start -->
       <div class="container-fluid pt-4 px-4">
-          <div class="row g-4">
-              <div class="col-sm-12 col-md-8">
+          <div class="row g-4" style="height: 100%;">
+              <div class="col-sm-12 col-md-8" >
                   <div class="bg-secondary rounded p-4" >
                       <div class="d-flex align-items-center justify-content-between mb-4">
                           <h3 id="k_line_ha" class="mb-0">{{name_ha}}</h3>
@@ -41,12 +41,16 @@
                       <div id="K_line" style="width: 100%;height:500px;"></div>
                   </div>
               </div>
-              <div class="col-sm-12 col-md-4">
-                  <div class="bg-secondary rounded p-4">
-                      <div class="d-flex align-items-center justify-content-between mb-4">
-                          <h6 class="mb-3">預測</h6>
+              <div class="col-sm-12 col-md-4" >
+                  <div class="bg-secondary rounded p-4" style="height: 100%; position: relative;">
+                      <div class="d-flex align-items-center justify-content-between">
+                          <h6 class="mb-3">信號預測 up機率</h6>
                       </div>
-                      <div id="up_down" style="width: 100%;height:500px;"></div>
+                      <div class="align-items-center justify-content-between " style="text-align:center; height: 100%; position: relative;" >
+                        <img src="/static/img/up_1.png" id="up_down" style="height: 32%;margin: auto; display: flex; align-items: center"></img>
+                        <img src="/static/img/up_2.png" id="up_down" style="height: 32%; margin: auto; display: flex; align-items: center"></img>
+                        <img src="/static/img/up_3.png" id="up_down" style="height: 32%; margin: auto; display: flex; align-items: center"></img>
+                      </div>
                   </div>
               </div>
           </div>
@@ -383,6 +387,13 @@
         alert('請填 股票資訊');
         return false;
       }
+      cont ++;
+      cont_1 ++;
+      cont_2 ++;
+      cont_3 ++;
+      cont_4 ++;
+      cont_5 ++;
+
       getha(search_from.q.value) // 搜尋時修改名稱
       // serialize()會將表單值序列化
       $.post('/K_line', $(search_from).serialize(), function(data){

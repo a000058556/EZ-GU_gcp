@@ -10,7 +10,11 @@
                     <h6 class="mb-0" id="loding">EPS</h6>
                 </div>              
                 <div class="alert alert-info mb-4" role="alert">
-                    -EPS說明。
+                  <p style="margin-bottom: 0;">
+                    EPS = 淨收入(Net Income)/在外流通股數(Shares)<br>
+                    每股可以賺多少錢，用來判斷公司是否賺錢的指標<br>
+                    (*較適用於長期投資者)
+                  </p>
                 </div>
                 <div class="alert mb-4" role="alert">
                     <div id="EPS_Bar" style="width: 100%;height:500px;"></div>
@@ -542,12 +546,12 @@
                         row.appendChild(JCell); 
                         console.log(row);
                     EPS.appendChild(row); 
-                    document.querySelector("#loding").textContent = '融資融券';
+                    document.querySelector("#loding").textContent = 'EPS';
                     }
                 }}
             })
         }else{
-            document.querySelector("#loding").textContent = '融資融券-讀取失敗';
+            document.querySelector("#loding").textContent = 'EPS-讀取失敗';
         }
       return false;
     }

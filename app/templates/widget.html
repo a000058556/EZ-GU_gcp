@@ -53,30 +53,20 @@
 
             <div class="col-12">
                 <div class="bg-secondary rounded h-100 p-4 ">
-                    
                     <div class="nav" >
-                        
                         <button id="SP_01" class=" p-3 nav-link btn btn-outline-warning m-2" type="button" data-bs-toggle="pill"
                             data-bs-target="#v-pills-settings"  role="tab"
-                            aria-controls="v-pills-settings" aria-selected="false" onclick ="return check_stock20();" >投信購買標的</button>
-                            
+                            aria-controls="v-pills-settings" aria-selected="false" onclick ="return check_stock20();" >投信購買標的</button>  
                         <button id="SP_02" class="nav-link p-3 btn btn-outline-warning m-2" id="v-pills-profile-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-profile" type="button" role="tab"
                             aria-controls="v-pills-profile" aria-selected="false" onclick ="return check_Turnover20();">週轉率</button>
-
                         <button  class="nav-link p-3 btn btn-outline-warning m-2" id="v-pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-home_0" type="button" role="tab"
                             aria-controls="v-pills-home_0" aria-selected="true">波動收縮規律</button>
-                            
                         <button class="nav-link p-3 btn btn-outline-warning m-2" id="v-pills-messages-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-messages_0" type="button" role="tab"
                             aria-controls="v-pills-messages_0" aria-selected="false">技術指標</button>
-
-                        <!-- <button class="nav-link p-3 btn btn-outline-warning m-2" id="v-pills-recommend_5-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-recommend_5" type="button" role="tab"
-                            aria-controls="v-pills-recommend_5" aria-selected="false">型態學</button> -->
-                    </div>
-                    
+                    </div> 
                 </div>
             </div>
 
@@ -236,22 +226,22 @@
                     <div class="nav">
                         <button id="RSI_1" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages" type="button" role="tab"
-                                aria-controls="v-pills-messages" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1();">RSI(超買)</button>
+                                aria-controls="v-pills-messages" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1();">RSI 超買區</button>
                         <button id="RSI_1_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_1_2" type="button" role="tab"
-                                aria-controls="v-pills-messages_1_2" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1_2();">RSI(超賣)</button>
+                                aria-controls="v-pills-messages_1_2" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_1_2();">RSI 超賣區</button>
                         <button id="RSI_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_02" type="button" role="tab"
-                                aria-controls="v-pills-messages_02" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_2();">RSI(前天比)</button>
+                                aria-controls="v-pills-messages_02" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_RSI_2();">RSI黃金交叉</button>
                         <button id="JDK_1" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_03" type="button" role="tab"
-                                aria-controls="v-pills-messages_03" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1();">JDK(超買)</button>
+                                aria-controls="v-pills-messages_03" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1();">KDJ 超買區</button>
                         <button id="JDK_1_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_03_2" type="button" role="tab"
-                                aria-controls="v-pills-messages_03_2" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1_2();">JDK(超賣)</button>
+                                aria-controls="v-pills-messages_03_2" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_1_2();">KDJ 超賣區</button>
                         <button id="JDK_2" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_04" type="button" role="tab"
-                                aria-controls="v-pills-messages_04" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_2();">JDK(前天比)</button>
+                                aria-controls="v-pills-messages_04" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_JDK_2();">KDJ 黃金交叉</button>
                         <button id="MACD_1" class="nav-link p-3 btn btn-outline-warning " id="v-pills-messages-tab" data-bs-toggle="pill"
                                 data-bs-target="#v-pills-messages_05" type="button" role="tab"
                                 aria-controls="v-pills-messages_05" aria-selected="true" style="margin-left: 0; margin-right: 1rem; margin-bottom: 1.5rem; " onclick ="return check_MACD_1();">MACD(多方)</button>
@@ -1026,13 +1016,13 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         RSI.appendChild(row); 
-                        document.querySelector("#RSI_1").textContent = 'RSI(超買)';
+                        document.querySelector("#RSI_1").textContent = 'RSI 超買區';
                         $("#RSI_1").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#RSI_1").textContent = 'RSI(超買)';
+                document.querySelector("#RSI_1").textContent = 'RSI 超買區';
                 $("#RSI_1").removeAttr("disabled");
             }
             return false;
@@ -1103,13 +1093,13 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         RSI_1_2.appendChild(row); 
-                        document.querySelector("#RSI_1_2").textContent = 'RSI(超賣)';
+                        document.querySelector("#RSI_1_2").textContent = 'RSI 超賣區';
                         $("#RSI_1_2").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#RSI_1").textContent = 'RSI(超賣)';
+                document.querySelector("#RSI_1").textContent = 'RSI 超賣區';
                 $("#RSI_1").removeAttr("disabled");
             }
             return false;
@@ -1179,13 +1169,13 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         RSI_2.appendChild(row); 
-                        document.querySelector("#RSI_2").textContent = 'RSI(前天比)';
+                        document.querySelector("#RSI_2").textContent = 'RSI黃金交叉';
                         $("#RSI_2").removeAttr("disabled");
                         }
                     }}
                 })
                 }else{
-                    document.querySelector("#RSI_2").textContent = 'RSI(前天比)';
+                    document.querySelector("#RSI_2").textContent = 'RSI黃金交叉';
                     $("#RSI_2").removeAttr("disabled");
                 }
                 return false;
@@ -1256,13 +1246,13 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         JDK.appendChild(row); 
-                        document.querySelector("#JDK_1").textContent = 'JDK(超買)';
+                        document.querySelector("#JDK_1").textContent = 'KDJ 超買區';
                         $("#JDK_1").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#JDK_1").textContent = 'JDK(超買)';
+                document.querySelector("#JDK_1").textContent = 'KDJ 超買區';
                 $("#JDK_1").removeAttr("disabled");
             }
             return false;
@@ -1333,13 +1323,13 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         JDK.appendChild(row); 
-                        document.querySelector("#JDK_1_2").textContent = 'JDK(超賣)';
+                        document.querySelector("#JDK_1_2").textContent = 'KDJ 超賣區';
                         $("#JDK_1_2").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#JDK_1_2").textContent = 'JDK(超賣)';
+                document.querySelector("#JDK_1_2").textContent = 'KDJ 超賣區';
                 $("#JDK_1_2").removeAttr("disabled");
             }
             return false;
@@ -1409,13 +1399,13 @@ function check_VCP(){
                             row.appendChild(GCell); 
                             console.log(row);
                         JDK_2.appendChild(row); 
-                        document.querySelector("#JDK_2").textContent = 'JDK(前天比)';
+                        document.querySelector("#JDK_2").textContent = 'KDJ 黃金交叉';
                         $("#JDK_2").removeAttr("disabled");
                         }
                     }}
                 })
             }else{
-                document.querySelector("#JDK_2").textContent = 'JDK(前天比)';
+                document.querySelector("#JDK_2").textContent = 'KDJ 黃金交叉';
                 $("#JDK_2").removeAttr("disabled");
             }
             return false;
@@ -1589,6 +1579,7 @@ function check_VCP(){
 <script>
 
     d={{ graphJSON | safe }};
+    console.log(d);
     Plotly.newPlot('treemap', d, {})
 
     // var layout = {
