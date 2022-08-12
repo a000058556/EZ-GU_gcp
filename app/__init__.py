@@ -887,9 +887,6 @@ def form_in():
         stock_ALL_INFO_buy['收盤價'] = stock_ALL_INFO_buy['收盤價'].astype(float, errors = 'raise')
         # print(stock_ALL_INFO_buy)
 
-        if stock_ALL_INFO_buy[1]:
-            stock_ALL_INFO_buy = stock_ALL_INFO_buy.drop(stock_ALL_INFO_buy.index[[1]])
-
         # 18-21年個股曝險程度及報酬率
         name = str('{}.tw'.format(name_st))
         df_days_st = data.DataReader(name, 'yahoo', start_yt, end_yt)
@@ -947,8 +944,10 @@ def form_in():
         print("=======================================")
         print(risk)
         print("=======================================")
-        if stock_YAHOO_ORDER_buy[1]:
+        if stock_ALL_INFO_buy.isnull().values.any():
+            stock_ALL_INFO_buy = stock_ALL_INFO_buy.drop(stock_ALL_INFO_buy.index[[1]])
             stock_YAHOO_ORDER_buy = stock_YAHOO_ORDER_buy.drop(stock_YAHOO_ORDER_buy.index[[1]])
+
         print(stock_YAHOO_ORDER_buy)
         print("=======================================")
         print(all_INPUT_buy)
