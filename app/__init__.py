@@ -738,20 +738,42 @@ def form_in():
             
         # 確認當前日期是否為週末
         # 確認當前時間是否早於09:30(若早於上午0930，則自動抓取前一天之資訊) 
-        today = dt.date.today()
+        # today = dt.date.today()
+        # yahoo_limit_time = dt.time(9, 30)
+        # localtime = dt.datetime.now().time()
+        # def check_weekend(today):
+        #     if today.weekday() == 5:
+        #         return str(today + dt.timedelta(days=-1))
+        #     if today.weekday() == 6:
+        #         return str(today + dt.timedelta(days=-2))
+        #     if localtime < yahoo_limit_time:
+        #         return str(today + dt.timedelta(days=-1))
+        #     if localtime > yahoo_limit_time:
+        #         return datetime.strftime(today, "%Y-%m-%d")
+        #     else:
+        #         return datetime.strftime(today, "%Y-%m-%d")
+        
+        day_y = dt.datetime.today()
         yahoo_limit_time = dt.time(9, 30)
         localtime = dt.datetime.now().time()
-        def check_weekend(today):
+        def check_weekend(day_y):
+            if day_y == day_y:
+                if day_y.weekday() == 0:
+                    if localtime < yahoo_limit_time:
+                        return str(day_y + dt.timedelta(days=-3))
+                    if localtime > yahoo_limit_time:
+                        return datetime.strftime(day_y, "%Y-%m-%d")
             if today.weekday() == 5:
-                return str(today + dt.timedelta(days=-1))
+                return str(day_y + dt.timedelta(days=-1))
             if today.weekday() == 6:
-                return str(today + dt.timedelta(days=-2))
-            if localtime < yahoo_limit_time:
-                return str(today + dt.timedelta(days=-1))
-            if localtime > yahoo_limit_time:
-                return datetime.strftime(today, "%Y-%m-%d")
+                return str(day_y + dt.timedelta(days=-2))
+            if day_y == day_y:
+                if localtime < yahoo_limit_time:
+                    return str(day_y + dt.timedelta(days=-1))
+                if localtime > yahoo_limit_time:
+                    return datetime.strftime(day_y, "%Y/%m/%d")
             else:
-                return datetime.strftime(today, "%Y-%m-%d")
+                return datetime.strftime(day_y, "%Y/%m/%d")
         # 調整輸入日期，輸入予證交所爬取資料
         # 市場未結束時(09:00 - 13:30)，證交所資料尚未統整，故抓取前一天資料
         input_Date = datetime.strptime(input_Date, "%Y-%m-%d").date()
