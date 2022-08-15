@@ -36,7 +36,7 @@
                   <div class="bg-secondary rounded p-4" >
                       <div class="d-flex align-items-center justify-content-between mb-4">
                           <h3 id="k_line_ha" class="mb-0">{{name_ha}}</h3>
-                          <button class="btn btn-link" id="k_line_h" href="">重新整理</button>
+                          <!-- <button class="btn btn-link" href="/EZ-GU">重新整理</button> -->
                       </div>
                       <div id="K_line" style="width: 100%;height:500px;"></div>
                   </div>
@@ -768,11 +768,11 @@
     type:'POST',
     async:false,
     dataType:'json',
-    beforeSend: function () {
-        // 禁用按鈕防止重複提交
-        document.querySelector("#k_line_h").textContent = 'Loading...';
-        $("#k_line_h").attr({ disabled: "disabled" });
-    },
+    // beforeSend: function () {
+    //     // 禁用按鈕防止重複提交
+    //     document.querySelector("#k_line_h").textContent = 'Loading...';
+    //     $("#k_line_h").attr({ disabled: "disabled" });
+    // },
     success:function(data) {
     // 成功取得資料後進行資料預處理
     // console.log(typeof(data));
@@ -1000,8 +1000,8 @@
         }),
         true
       )
-    document.querySelector("#k_line_h").textContent = '重新整理';
-    $("#k_line_h").removeAttr("disabled");
+    // document.querySelector("#k_line_h").textContent = '重新整理';
+    // $("#k_line_h").removeAttr("disabled");
     
     },
     error:function (msg) {
