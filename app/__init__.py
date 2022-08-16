@@ -177,7 +177,7 @@ def my_echart():
         q = upname(q)
         conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="' +q+ '" AND Date BETWEEN "2022-04-29" AND "2022-07-13"'
+        sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="' +q+ '" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -283,7 +283,7 @@ def my_MACD():
         q = upname(q)
         conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
+        sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
         cur.execute(sql)
         u = cur.fetchall()
@@ -312,7 +312,7 @@ def my_MACD():
     else:
         conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
-        sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"' 
+        sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"' 
         cur.execute(sql)
         u = cur.fetchall()
         # print(u)
