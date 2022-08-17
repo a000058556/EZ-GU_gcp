@@ -89,10 +89,10 @@ EZ-GU_gcp
         |__ Margin_Trading_and_Short_Selling.html: 選股資訊子頁-融資融券排行
         |__ EPS.html: 選股資訊子頁-EPS
         |__ form.html: 投資組合頁
-        |__ _parts: 模板block
-            |__ _base.html: 基礎頁面
-            |__ _to_name.html: 選股資訊子頁-基礎頁面
-            |__ _404.html: 404頁面
+        |__ parts: 模板block
+            |__ base.html: 基礎頁面
+            |__ to_name.html: 選股資訊子頁-基礎頁面
+            |__ 404.html: 404頁面
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -100,6 +100,6 @@ EZ-GU_gcp
 
 ## 前往預覽：
 
-- [Website link](http://ez-gu.info/)
+- <p align="left">(<a href="http://ez-gu.info/" target="_blank">Website link</a>)</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
