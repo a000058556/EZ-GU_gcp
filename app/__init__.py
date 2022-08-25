@@ -175,7 +175,7 @@ def my_echart():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="' +q+ '" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
@@ -207,7 +207,7 @@ def my_echart():
     # 用在選推薦分頁
     elif url_name :
         url_name = upname(url_name)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="'+url_name+'"'
         print(sql)
@@ -240,7 +240,7 @@ def my_echart():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"' 
         cur.execute(sql)
@@ -281,7 +281,7 @@ def my_MACD():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
@@ -310,7 +310,7 @@ def my_MACD():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, MACD, MACDsignal, MACDhist FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"' 
         cur.execute(sql)
@@ -348,7 +348,7 @@ def my_Change_MK():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, Change_MK FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
         print(sql)
@@ -375,7 +375,7 @@ def my_Change_MK():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, Change_MK FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2020-05-13" AND "2022-07-12"' 
         cur.execute(sql)
@@ -410,7 +410,7 @@ def my_BBAND():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume, upper, middle, lower FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-01-05" AND "2022-07-13"'
         print(sql)
@@ -444,7 +444,7 @@ def my_BBAND():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume, upper, middle, lower FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-01-05" AND "2022-07-13"' 
         cur.execute(sql)
@@ -486,7 +486,7 @@ def my_KDJ():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, SLOWK, SLOWD, SLOWJ FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         print(sql)
@@ -515,7 +515,7 @@ def my_KDJ():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, SLOWK, SLOWD, SLOWJ FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"' 
         cur.execute(sql)
@@ -553,7 +553,7 @@ def my_OBV():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, OBV FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2020-05-13" AND "2022-07-12"'
         print(sql)
@@ -580,7 +580,7 @@ def my_OBV():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, OBV FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2020-05-13" AND "2022-07-12"' 
         cur.execute(sql)
@@ -615,7 +615,7 @@ def my_RSI():
     # 當有取得前端輸入值q時，用輸入值做搜尋
     if q :
         q = upname(q)
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, RSI9, RSI14, RSI25 FROM stock_info where Symbol="'+q+'" AND Date BETWEEN "2022-03-01" AND "2022-07-12"'
         # print(sql)
@@ -644,7 +644,7 @@ def my_RSI():
 
     # 若沒有則帶入預設
     else:
-        conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+        conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
         cur = conn.cursor()
         sql = 'SELECT Symbol, Date, RSI9, RSI14, RSI25 FROM stock_info where Symbol="2330.tw" AND Date BETWEEN "2022-03-01" AND "2022-07-12"' 
         cur.execute(sql)
@@ -1120,7 +1120,7 @@ def MTaSS():
 @app.route('/SPK_3',methods=['GET','POST'])
 def SPK_3():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close > upper'
     print(sql)
@@ -1154,7 +1154,7 @@ def SPK_3():
 @app.route('/SPK_4',methods=['GET','POST'])
 def SPK_4():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close > middle AND Close < upper'
     print(sql)
@@ -1188,7 +1188,7 @@ def SPK_4():
 @app.route('/SPK_5',methods=['GET','POST'])
 def SPK_5():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close >= lower AND Close < middle'
     print(sql)
@@ -1222,7 +1222,7 @@ def SPK_5():
 @app.route('/SPK_6',methods=['GET','POST'])
 def SPK_6():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND Volume BETWEEN 50000 AND 5000000 AND Volume10 BETWEEN 50000 AND 5000000 AND Volume30 BETWEEN 50000 AND 5000000 AND Volume60 BETWEEN 50000 AND 5000000 AND Volume90 BETWEEN 50000 AND 5000000 AND SAM50 > SAM100 AND SAM100 > SAM200 AND Close <= lower'
     print(sql)
@@ -1256,7 +1256,7 @@ def SPK_6():
 @app.route('/RSI_1',methods=['GET','POST'])
 def RSI_1():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND RSI9>80'
     print(sql)
@@ -1299,7 +1299,7 @@ def RSI_1():
 @app.route('/RSI_1_2',methods=['GET','POST'])
 def RSI_1_2():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND RSI9<20'
     print(sql)
@@ -1343,7 +1343,7 @@ def RSI_1_2():
 @app.route('/RSI_2',methods=['GET','POST'])
 def RSI_2():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND RSI9 < RSI14) AND Date = (SELECT MAX(Date) FROM stock_info) AND RSI9 > RSI14'
 
@@ -1379,7 +1379,7 @@ def RSI_2():
 @app.route('/JDK_1',methods=['GET','POST'])
 def JDK_1():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK > 80 '
 
@@ -1421,7 +1421,7 @@ def JDK_1():
 @app.route('/JDK_1_2',methods=['GET','POST'])
 def JDK_1_2():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK < 20'
 
@@ -1464,7 +1464,7 @@ def JDK_1_2():
 @app.route('/JDK_2',methods=['GET','POST'])
 def JDK_2():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND SLOWK < SLOWD) AND Date = (SELECT MAX(Date) FROM stock_info) AND SLOWK > SLOWD'
 
@@ -1500,7 +1500,7 @@ def JDK_2():
 @app.route('/MACD_1',methods=['GET','POST'])
 def MACD_1():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND MACD < MACDsignal) AND Date = (SELECT MAX(Date) FROM stock_info) AND MACD > MACDsignal;'
 
@@ -1535,7 +1535,7 @@ def MACD_1():
 @app.route('/MACD_2',methods=['GET','POST'])
 def MACD_2():
 
-    conn = pymysql.connect(host='107.167.189.107',user='root',password='a000000',db='stock_analysis')
+    conn = pymysql.connect(host='35.194.202.150',user='root',password='a000000',db='stock_analysis')
     cur = conn.cursor()
     sql = 'SELECT Symbol, Date, High, Low, Open, Close, Volume FROM stock_info WHERE Symbol = any(SELECT Symbol FROM stock_info WHERE Date = (SELECT date_sub(max(Date),interval 1 DAY) FROM stock_info) AND MACD > MACDsignal) AND Date = (SELECT MAX(Date) FROM stock_info) AND MACD < MACDsignal;'
 

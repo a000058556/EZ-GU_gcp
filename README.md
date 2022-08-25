@@ -46,10 +46,10 @@
 
 ## 四項選股推薦：
 
--依照「投信購買標的」提供投資人購買方向。  
--依照「週轉率排行」提供當沖、週轉率較高等適合當沖標的族群。  
--依照VCP「波動收縮規律」設定參數，間接從台灣股市挑選出中長線股票。  
--依照「技術指標」提供喜好運用KD、MACD、RSI作為買入或賣出的基準。  
+- 依照「投信購買標的」提供投資人購買方向。  
+- 依照「週轉率排行」提供當沖、週轉率較高等適合當沖標的族群。  
+- 依照VCP「波動收縮規律」設定參數，間接從台灣股市挑選出中長線股票。  
+- 依照「技術指標」提供喜好運用KD、MACD、RSI作為買入或賣出的基準。  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -100,6 +100,6 @@ EZ-GU_gcp
 
 ## 前往預覽：
 
-- <p align="left">(<a href="http://ez-gu.info/" target="_blank">Website link</a>)</p>
+- <p align="left">「<a href="http://ez-gu.info/" target="_blank">Website link</a>」</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
